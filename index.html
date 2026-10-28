@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Rede Esporte - Guia de Jogos na TV & Player ao Vivo</title>
+  <title>REDE ESPORTE - Guia de Jogos na TV & Player ao Vivo</title>
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
@@ -404,30 +404,235 @@
 
   <script>
     const channels = [
-      { id: "premiere-c", name: "PREMIERE C", net: "Premiere", url: "https://redecanais.by/player3/ch.php?canal=premiereclubes" },
-      { id: "premiere-2", name: "PREMIERE 2", net: "Premiere", url: "https://redecanais.by/player3/ch.php?canal=premiere2" },
-      { id: "premiere-3", name: "PREMIERE 3", net: "Premiere", url: "https://redecanais.by/player3/ch.php?canal=premiere3" },
-      { id: "premiere-4", name: "PREMIERE 4", net: "Premiere", url: "https://redecanais.by/player3/ch.php?canal=premiere4" },
-      { id: "premiere-5", name: "PREMIERE 5", net: "Premiere", url: "https://redecanais.by/player3/ch.php?canal=premiere5" },
-      { id: "premiere-6", name: "PREMIERE 6", net: "Premiere", url: "https://redecanais.by/player3/ch.php?canal=premiere6" },
-      { id: "premiere-7", name: "PREMIERE 7", net: "Premiere", url: "https://redecanais.by/player3/ch.php?canal=premiere7" },
-      { id: "sportv-1", name: "SPORTV 1", net: "SporTV", url: "https://redecanais.by/player3/ch.php?canal=sportv1" },
-      { id: "sportv-2", name: "SPORTV 2", net: "SporTV", url: "https://redecanais.by/player3/ch.php?canal=sportv2" },
-      { id: "sportv-3", name: "SPORTV 3", net: "SporTV", url: "https://redecanais.by/player3/ch.php?canal=sportv3" },
-      { id: "sportynet-1", name: "SPORTYNET 1", net: "Sportynet", url: "https://redecanais.by/player3/ch.php?canal=sportynet1" },
-      { id: "sportynet-2", name: "SPORTYNET 2", net: "Sportynet", url: "https://redecanais.by/player3/ch.php?canal=sportynet2" },
-      { id: "sportynet-3", name: "SPORTYNET 3", net: "Sportynet", url: "https://redecanais.by/player3/ch.php?canal=sportynet3" },
-      { id: "espn-1", name: "ESPN 1", net: "ESPN", url: "https://redecanais.by/player3/ch.php?canal=espn" },
-      { id: "espn-2", name: "ESPN 2", net: "ESPN", url: "https://redecanais.by/player3/ch.php?canal=espn2" },
-      { id: "espn-3", name: "ESPN 3", net: "ESPN", url: "https://redecanais.by/player3/ch.php?canal=espn3" },
-      { id: "espn-4", name: "ESPN 4", net: "ESPN", url: "https://redecanais.by/player3/ch.php?canal=espn4" },
-      { id: "espn-5", name: "ESPN 5", net: "ESPN", url: "https://redecanais.by/player3/ch.php?canal=espn5" },
-      { id: "espn-6", name: "ESPN 6", net: "ESPN", url: "https://redecanais.by/player3/ch.php?canal=espn6" },
-      { id: "bandsports", name: "BANDSPORTS", net: "BandSports", url: "https://redecanais.by/player3/ch.php?canal=bandsports" }
-    ];
+  {
+    "id": "premiere-c",
+    "name": "PREMIERE C",
+    "net": "Premiere",
+    "url": "https://redecanais.by/player3/ch.php?canal=premiereclubes"
+  },
+  {
+    "id": "premiere-2",
+    "name": "PREMIERE 2",
+    "net": "Premiere",
+    "url": "https://redecanais.by/player3/ch.php?canal=premiere2"
+  },
+  {
+    "id": "premiere-3",
+    "name": "PREMIERE 3",
+    "net": "Premiere",
+    "url": "https://redecanais.by/player3/ch.php?canal=premiere3"
+  },
+  {
+    "id": "premiere-4",
+    "name": "PREMIERE 4",
+    "net": "Premiere",
+    "url": "https://redecanais.by/player3/ch.php?canal=premiere4"
+  },
+  {
+    "id": "premiere-5",
+    "name": "PREMIERE 5",
+    "net": "Premiere",
+    "url": "https://redecanais.by/player3/ch.php?canal=premiere5"
+  },
+  {
+    "id": "premiere-6",
+    "name": "PREMIERE 6",
+    "net": "Premiere",
+    "url": "https://redecanais.by/player3/ch.php?canal=premiere6"
+  },
+  {
+    "id": "premiere-7",
+    "name": "PREMIERE 7",
+    "net": "Premiere",
+    "url": "https://redecanais.by/player3/ch.php?canal=premiere7"
+  },
+  {
+    "id": "sportv-1",
+    "name": "SPORTV 1",
+    "net": "SporTV",
+    "url": "https://redecanais.by/player3/ch.php?canal=sportv1"
+  },
+  {
+    "id": "sportv-2",
+    "name": "SPORTV 2",
+    "net": "SporTV",
+    "url": "https://redecanais.by/player3/ch.php?canal=sportv2"
+  },
+  {
+    "id": "sportv-3",
+    "name": "SPORTV 3",
+    "net": "SporTV",
+    "url": "https://redecanais.by/player3/ch.php?canal=sportv3"
+  },
+  {
+    "id": "sportynet-1",
+    "name": "SPORTYNET 1",
+    "net": "Sportynet",
+    "url": "https://redecanais.by/player3/ch.php?canal=sportynet1"
+  },
+  {
+    "id": "sportynet-2",
+    "name": "SPORTYNET 2",
+    "net": "Sportynet",
+    "url": "https://redecanais.by/player3/ch.php?canal=sportynet2"
+  },
+  {
+    "id": "sportynet-3",
+    "name": "SPORTYNET 3",
+    "net": "Sportynet",
+    "url": "https://redecanais.by/player3/ch.php?canal=sportynet3"
+  },
+  {
+    "id": "espn-1",
+    "name": "ESPN 1",
+    "net": "ESPN",
+    "url": "https://redecanais.by/player3/ch.php?canal=espn"
+  },
+  {
+    "id": "espn-2",
+    "name": "ESPN 2",
+    "net": "ESPN",
+    "url": "https://redecanais.by/player3/ch.php?canal=espn2"
+  },
+  {
+    "id": "espn-3",
+    "name": "ESPN 3",
+    "net": "ESPN",
+    "url": "https://redecanais.by/player3/ch.php?canal=espn3"
+  },
+  {
+    "id": "espn-4",
+    "name": "ESPN 4",
+    "net": "ESPN",
+    "url": "https://redecanais.by/player3/ch.php?canal=espn4"
+  },
+  {
+    "id": "espn-5",
+    "name": "ESPN 5",
+    "net": "ESPN",
+    "url": "https://redecanais.by/player3/ch.php?canal=espn5"
+  },
+  {
+    "id": "espn-6",
+    "name": "ESPN 6",
+    "net": "ESPN",
+    "url": "https://redecanais.by/player3/ch.php?canal=espn6"
+  },
+  {
+    "id": "bandsports",
+    "name": "BANDSPORTS",
+    "net": "BandSports",
+    "url": "https://redecanais.by/player3/ch.php?canal=bandsports"
+  }
+];
 
     const DEFAULT_DATE = "Quarta – 28/10";
-    const DEFAULT_MATCHES = [{"time":"13h00","confrontation":"Al Nahda x Al Rayyan","championship":"AFC Champions League Two","channels":"Disney+","matchedId":null,"matchedName":null,"available":false},{"time":"14h00","confrontation":"Freiburg x Wolfsburg","championship":"Copa da Alemanha","channels":"Disney+","matchedId":null,"matchedName":null,"available":false},{"time":"14h00","confrontation":"Jaddeloh x Hertha Berlin","championship":"Copa da Alemanha","channels":"Disney+","matchedId":null,"matchedName":null,"available":false},{"time":"14h00","confrontation":"Paderborn x Stuttgart","championship":"Copa da Alemanha","channels":"Disney+","matchedId":null,"matchedName":null,"available":false},{"time":"14h00","confrontation":"Dynamo Dresden x Schalke 04","championship":"Copa da Alemanha","channels":"Disney+","matchedId":null,"matchedName":null,"available":false},{"time":"14h30","confrontation":"Venezia x Inter de Milão","championship":"Serie A","channels":"Youtube.com/@SportyNetBrasil, SportyNet e Disney+","matchedId":"sportynet-1","matchedName":"SPORTYNET 1","available":true},{"time":"14h30","confrontation":"Milan x Bolonga","championship":"Serie A","channels":"ESPN 4 e Disney+","matchedId":"espn-4","matchedName":"ESPN 4","available":true},{"time":"14h30","confrontation":"Parma x Udinese","championship":"Serie A","channels":"Disney+","matchedId":null,"matchedName":null,"available":false},{"time":"14h45","confrontation":"Bayern de Munique x Real Madrid","championship":"UEFA Champions League Feminina","channels":"Youtube.com/@espnbrasil e Disney+","matchedId":"espn-1","matchedName":"ESPN 1","available":true},{"time":"14h45","confrontation":"Chelsea x Roma","championship":"UEFA Champions League Feminina","channels":"ESPN 3 e Disney+","matchedId":"espn-3","matchedName":"ESPN 3","available":true},{"time":"14h45","confrontation":"Servette x OH Leuven","championship":"UEFA Champions League Feminina","channels":"Disney+","matchedId":null,"matchedName":null,"available":false},{"time":"15h00","confrontation":"Anaitasuna x Alavés","championship":"Copa do Rei","channels":"Disney+","matchedId":null,"matchedName":null,"available":false},{"time":"15h00","confrontation":"Tarancon x Levante","championship":"Copa do Rei","channels":"Disney+","matchedId":null,"matchedName":null,"available":false},{"time":"15h00","confrontation":"Sete de Setembro x Ipojuca","championship":"Campeonato Pernambucano 1° Turno","channels":"Youtube.com/@TVFPFPE","matchedId":null,"matchedName":null,"available":false},{"time":"15h00","confrontation":"Jaguar x Santa Fé","championship":"Campeonato Pernambucano 1° Turno","channels":"Youtube.com/@TVFPFPE","matchedId":null,"matchedName":null,"available":false},{"time":"16h30","confrontation":"Manchester City x Brighton","championship":"Copa da Liga Inglesa","channels":"Disney+","matchedId":null,"matchedName":null,"available":false},{"time":"16h45","confrontation":"Genoa x Juventus","championship":"Serie A","channels":"Youtube.com/@SportyNetBrasil, SportyNet e Disney+","matchedId":"sportynet-1","matchedName":"SPORTYNET 1","available":true},{"time":"16h45","confrontation":"Monza x Napoli","championship":"Serie A","channels":"Youtube.com/@espnbrasil e Disney+","matchedId":"espn-1","matchedName":"ESPN 1","available":true},{"time":"16h45","confrontation":"Sunderland x Brentford","championship":"Copa da Liga Inglesa","channels":"Disney+","matchedId":null,"matchedName":null,"available":false},{"time":"16h45","confrontation":"Fulham x Crystal Palace","championship":"Copa da Liga Inglesa","channels":"Disney+","matchedId":null,"matchedName":null,"available":false},{"time":"16h45","confrontation":"Bournemouth x Aston Villa","championship":"Copa da Liga Inglesa","channels":"Disney+","matchedId":null,"matchedName":null,"available":false},{"time":"16h45","confrontation":"Bayern de Munique x Magdeburg","championship":"Copa da Alemanha","channels":"ESPN 4 e Disney+","matchedId":"espn-4","matchedName":"ESPN 4","available":true},{"time":"16h45","confrontation":"Bayer Leverkusen x Nürnberg","championship":"Copa da Alemanha","channels":"Disney+","matchedId":null,"matchedName":null,"available":false},{"time":"16h45","confrontation":"Hannover 96 x Kaiserlautern","championship":"Copa da Alemanha","channels":"Disney+","matchedId":null,"matchedName":null,"available":false},{"time":"16h45","confrontation":"Holstein Kiel x Hoffenheim","championship":"Copa da Alemanha","channels":"Disney+","matchedId":null,"matchedName":null,"available":false},{"time":"17h00","confrontation":"Liverpool x Chelsea","championship":"Copa da Liga Inglesa","channels":"ESPN e Disney+","matchedId":"espn-1","matchedName":"ESPN 1","available":true},{"time":"17h00","confrontation":"Navalcarnero x Real Bétis","championship":"Copa do Rei","channels":"Disney+","matchedId":null,"matchedName":null,"available":false},{"time":"17h00","confrontation":"Salamanca x Celta de Vigo","championship":"Copa do Rei","channels":"Disney+","matchedId":null,"matchedName":null,"available":false},{"time":"17h00","confrontation":"Tavernes x Valencia","championship":"Copa do Rei","channels":"Disney+","matchedId":null,"matchedName":null,"available":false},{"time":"17h00","confrontation":"Hearts x Rangers","championship":"Campeonato Escocês","channels":"Youtube.com/@canalgoatbr","matchedId":null,"matchedName":null,"available":false},{"time":"17h00","confrontation":"Arsenal x Benfica","championship":"UEFA Champions League Feminina","channels":"ESPN 3 e Disney+","matchedId":"espn-3","matchedName":"ESPN 3","available":true},{"time":"17h00","confrontation":"Lyon x Inter de Milão","championship":"UEFA Champions League Feminina","channels":"Disney+","matchedId":null,"matchedName":null,"available":false},{"time":"17h00","confrontation":"Corinthians x Independiente Santa Fe","championship":"CONMEBOL Libertadores Feminina (Semifinal)","channels":"Youtube.com/@CazeTV, Youtube.com/@canalgolbrasil, Youtube.com/@UOLEsporte, Youtube.com/@NSports, Xsports, Sportv e NSports","matchedId":"sportv-1","matchedName":"SPORTV 1","available":true},{"time":"18h30","confrontation":"Carabobo x La Guaira","championship":"Campeonato Venezuelano","channels":"Youtube.com/@ligafutve","matchedId":null,"matchedName":null,"available":false},{"time":"19h30","confrontation":"Fluminense x Internacional","championship":"Brasileirão","channels":"Youtube.com/@CazeTV, Record e Premiere","matchedId":"premiere-c","matchedName":"PREMIERE","available":true},{"time":"19h30","confrontation":"Santos x Palmeiras","championship":"Brasileirão","channels":"Premiere","matchedId":"premiere-c","matchedName":"PREMIERE","available":true},{"time":"19h30","confrontation":"Red Bull Bragantino x Chapecoense","championship":"Brasileirão","channels":"Premiere","matchedId":"premiere-c","matchedName":"PREMIERE","available":true},{"time":"20h30","confrontation":"Inter Miami x FC Cincinnati","championship":"MLS","channels":"AppleTV","matchedId":null,"matchedName":null,"available":false},{"time":"20h30","confrontation":"Charlotte FC x CF Montreal","championship":"MLS","channels":"AppleTV","matchedId":null,"matchedName":null,"available":false},{"time":"20h30","confrontation":"NE Revolution x NY Red Bulls","championship":"MLS","channels":"AppleTV","matchedId":null,"matchedName":null,"available":false},{"time":"20h30","confrontation":"New York City x Atlanta United","championship":"MLS","channels":"AppleTV","matchedId":null,"matchedName":null,"available":false},{"time":"20h30","confrontation":"Toronto FC x DC United","championship":"MLS","channels":"AppleTV","matchedId":null,"matchedName":null,"available":false},{"time":"20h30","confrontation":"Metropolitanos x Portuguesa-VEN","championship":"Campeonato Venezuelano","channels":"Youtube.com/@ligafutve","matchedId":null,"matchedName":null,"available":false},{"time":"21h00","confrontation":"Cruzeiro x Olimpia","championship":"CONMEBOL Libertadores Feminina (Semifinal)","channels":"Youtube.com/@CazeTV, Youtube.com/@canalgolbrasil, Youtube.com/@UOLEsporte, Youtube.com/@NSports, Xsports, Sportv e NSports","matchedId":"sportv-1","matchedName":"SPORTV 1","available":true},{"time":"21h30","confrontation":"Bahia x São Paulo","championship":"Brasileirão","channels":"Youtube.com/@getv, Globo (BA, SP e parte da rede) e Premiere","matchedId":"premiere-c","matchedName":"PREMIERE","available":true},{"time":"21h30","confrontation":"Remo x Botafogo","championship":"Brasileirão","channels":"Globo (PA, RJ e parte da rede) e Premiere","matchedId":"premiere-c","matchedName":"PREMIERE","available":true},{"time":"21h30","confrontation":"Deportivo Saprissa x Firpo","championship":"CONCACAF Central American Cup","channels":"Disney+","matchedId":null,"matchedName":null,"available":false},{"time":"21h30","confrontation":"Austin FC x Real Salt Lake","championship":"MLS","channels":"AppleTV","matchedId":null,"matchedName":null,"available":false},{"time":"21h30","confrontation":"Chicago Fire x Orlando City","championship":"MLS","channels":"AppleTV","matchedId":null,"matchedName":null,"available":false},{"time":"21h30","confrontation":"FC Dallas x Columbus Crew","championship":"MLS","channels":"AppleTV","matchedId":null,"matchedName":null,"available":false},{"time":"21h30","confrontation":"Minnesota United x Sporting KC","championship":"MLS","channels":"AppleTV","matchedId":null,"matchedName":null,"available":false},{"time":"21h30","confrontation":"Nashville SC x Philadelphia Union","championship":"MLS","channels":"AppleTV","matchedId":null,"matchedName":null,"available":false},{"time":"21h30","confrontation":"St. Louis City x Portland Timbers","championship":"MLS","channels":"AppleTV","matchedId":null,"matchedName":null,"available":false},{"time":"23h30","confrontation":"SJ Earthquakes x Colorado Rapids","championship":"MLS","channels":"AppleTV","matchedId":null,"matchedName":null,"available":false},{"time":"23h30","confrontation":"Seattle Sounders x Houston Dynamo","championship":"MLS","channels":"AppleTV","matchedId":null,"matchedName":null,"available":false},{"time":"23h30","confrontation":"Vancouver Whitecaps x San Diego FC","championship":"MLS","channels":"AppleTV","matchedId":null,"matchedName":null,"available":false}];
+    const DEFAULT_MATCHES = [{"time":"19h30","confrontation":"Fluminense x Internacional","championship":"Brasileirão","channels":"Youtube.com/@CazeTV, Record e Premiere","matchedId":"premiere-c","matchedName":"PREMIERE","available":true},{"time":"19h30","confrontation":"Santos x Palmeiras","championship":"Brasileirão","channels":"Premiere","matchedId":"premiere-c","matchedName":"PREMIERE","available":true},{"time":"19h30","confrontation":"Red Bull Bragantino x Chapecoense","championship":"Brasileirão","channels":"Premiere","matchedId":"premiere-c","matchedName":"PREMIERE","available":true},{"time":"20h30","confrontation":"Inter Miami x FC Cincinnati","championship":"MLS","channels":"AppleTV","matchedId":null,"matchedName":null,"available":false},{"time":"20h30","confrontation":"Charlotte FC x CF Montreal","championship":"MLS","channels":"AppleTV","matchedId":null,"matchedName":null,"available":false},{"time":"20h30","confrontation":"NE Revolution x NY Red Bulls","championship":"MLS","channels":"AppleTV","matchedId":null,"matchedName":null,"available":false},{"time":"20h30","confrontation":"New York City x Atlanta United","championship":"MLS","channels":"AppleTV","matchedId":null,"matchedName":null,"available":false},{"time":"20h30","confrontation":"Toronto FC x DC United","championship":"MLS","channels":"AppleTV","matchedId":null,"matchedName":null,"available":false},{"time":"20h30","confrontation":"Metropolitanos x Portuguesa-VEN","championship":"Campeonato Venezuelano","channels":"Youtube.com/@ligafutve","matchedId":null,"matchedName":null,"available":false},{"time":"21h00","confrontation":"Cruzeiro x Olimpia","championship":"CONMEBOL Libertadores Feminina (Semifinal)","channels":"Youtube.com/@CazeTV, Youtube.com/@canalgolbrasil, Youtube.com/@UOLEsporte, Youtube.com/@NSports, Xsports, Sportv e NSports","matchedId":"sportv-1","matchedName":"SPORTV 1","available":true},{"time":"21h30","confrontation":"Bahia x São Paulo","championship":"Brasileirão","channels":"Youtube.com/@getv, Globo (BA, SP e parte da rede) e Premiere","matchedId":"premiere-c","matchedName":"PREMIERE","available":true},{"time":"21h30","confrontation":"Remo x Botafogo","championship":"Brasileirão","channels":"Globo (PA, RJ e parte da rede) e Premiere","matchedId":"premiere-c","matchedName":"PREMIERE","available":true},{"time":"21h30","confrontation":"Deportivo Saprissa x Firpo","championship":"CONCACAF Central American Cup","channels":"Disney+","matchedId":null,"matchedName":null,"available":false},{"time":"21h30","confrontation":"Austin FC x Real Salt Lake","championship":"MLS","channels":"AppleTV","matchedId":null,"matchedName":null,"available":false},{"time":"21h30","confrontation":"Chicago Fire x Orlando City","championship":"MLS","channels":"AppleTV","matchedId":null,"matchedName":null,"available":false},{"time":"21h30","confrontation":"FC Dallas x Columbus Crew","championship":"MLS","channels":"AppleTV","matchedId":null,"matchedName":null,"available":false},{"time":"21h30","confrontation":"Minnesota United x Sporting KC","championship":"MLS","channels":"AppleTV","matchedId":null,"matchedName":null,"available":false},{"time":"21h30","confrontation":"Nashville SC x Philadelphia Union","championship":"MLS","channels":"AppleTV","matchedId":null,"matchedName":null,"available":false},{"time":"21h30","confrontation":"St. Louis City x Portland Timbers","championship":"MLS","channels":"AppleTV","matchedId":null,"matchedName":null,"available":false},{"time":"23h30","confrontation":"SJ Earthquakes x Colorado Rapids","championship":"MLS","channels":"AppleTV","matchedId":null,"matchedName":null,"available":false},{"time":"23h30","confrontation":"Seattle Sounders x Houston Dynamo","championship":"MLS","channels":"AppleTV","matchedId":null,"matchedName":null,"available":false},{"time":"23h30","confrontation":"Vancouver Whitecaps x San Diego FC","championship":"MLS","channels":"AppleTV","matchedId":null,"matchedName":null,"available":false}];
+
+    // FootyLogos team badge dictionary
+    const TEAM_SLUGS = {
+      'palmeiras': 'palmeiras',
+      'flamengo': 'flamengo',
+      'corinthians': 'corinthians',
+      'sao paulo': 'sao-paulo',
+      'santos': 'santos-fc',
+      'fluminense': 'fluminense',
+      'botafogo': 'botafogo',
+      'vasco': 'vasco-da-gama',
+      'internacional': 'sc-internacional',
+      'inter': 'sc-internacional',
+      'gremio': 'gremio',
+      'cruzeiro': 'cruzeiro',
+      'bahia': 'bahia',
+      'red bull bragantino': 'red-bull-bragantino',
+      'chapecoense': 'chapecoense',
+      'remo': 'clube-do-remo',
+      'atletico mineiro': 'atletico-mineiro',
+      'atletico mg': 'atletico-mineiro',
+      'athletico paranaense': 'athletico-paranaense',
+      'athletico pr': 'athletico-paranaense',
+      'fortaleza': 'fortaleza-ec',
+      'sport': 'sport-recife',
+      'coritiba': 'coritiba-fbc',
+      'vitoria': 'ec-vitoria',
+      'goias': 'goias-ec',
+      'juventude': 'ec-juventude',
+      'criciuma': 'criciuma-ec',
+      'cuiaba': 'cuiaba-ec',
+      'real madrid': 'real-madrid',
+      'barcelona': 'fc-barcelona',
+      'manchester city': 'manchester-city',
+      'manchester united': 'manchester-united',
+      'liverpool': 'liverpool-fc',
+      'arsenal': 'arsenal',
+      'chelsea': 'chelsea',
+      'bayern de munique': 'bayern-munich',
+      'bayern munich': 'bayern-munich',
+      'bayer leverkusen': 'bayer-leverkusen',
+      'wolfsburg': 'vfl-wolfsburg',
+      'freiburg': 'sc-freiburg',
+      'stuttgart': 'vfb-stuttgart',
+      'schalke 04': 'fc-schalke-04',
+      'hertha berlin': 'hertha-bsc',
+      'inter de milao': 'inter-milan',
+      'milan': 'ac-milan',
+      'juventus': 'juventus',
+      'napoli': 'ssc-napoli',
+      'roma': 'as-roma',
+      'bolonga': 'bologna-fc-1909',
+      'genoa': 'genoa-cfc',
+      'monza': 'ac-monza',
+      'parma': 'parma-calcio-1913',
+      'udinese': 'udinese-calcio',
+      'venezia': 'venezia-fc',
+      'brighton': 'brighton-hove-albion',
+      'aston villa': 'aston-villa',
+      'crystal palace': 'crystal-palace',
+      'brentford': 'brentford-fc',
+      'fulham': 'fulham-fc',
+      'bournemouth': 'afc-bournemouth',
+      'sunderland': 'sunderland-afc',
+      'valencia': 'valencia-cf',
+      'celta de vigo': 'rc-celta-de-vigo',
+      'real betis': 'real-betis',
+      'alaves': 'deportivo-alaves',
+      'levante': 'ud-levante',
+      'benfica': 'sl-benfica',
+      'lyon': 'olympique-lyonnais',
+      'rangers': 'rangers-fc',
+      'hearts': 'heart-of-midlothian',
+      'inter miami': 'inter-miami-cf',
+      'fc cincinnati': 'fc-cincinnati',
+      'atlanta united': 'atlanta-united-fc',
+      'orlando city': 'orlando-city-sc',
+      'columbus crew': 'columbus-crew',
+      'chicago fire': 'chicago-fire-fc',
+      'austin fc': 'austin-fc',
+      'seattle sounders': 'seattle-sounders-fc',
+      'portland timbers': 'portland-timbers',
+      'olimpia': 'club-olimpia',
+      'independiente santa fe': 'independiente-santa-fe'
+    };
+
+    function getTeamBadgeHtml(teamName) {
+      if (!teamName) return '';
+      const norm = teamName.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').trim();
+      let slug = TEAM_SLUGS[norm];
+      if (!slug) {
+        for (const k in TEAM_SLUGS) {
+          if (norm.includes(k) || k.includes(norm)) {
+            slug = TEAM_SLUGS[k];
+            break;
+          }
+        }
+      }
+      const initials = (teamName.slice(0, 3)).toUpperCase();
+      if (slug) {
+        const url = 'https://assets.footylogos.com/previews/' + slug + '/' + slug + '-logo-footylogos-320.webp';
+        return '<img src="' + url + '" alt="' + teamName + '" style="width:26px;height:26px;object-fit:contain;flex-shrink:0;" onerror="this.outerHTML=\'<span style=\\\'display:inline-flex;align-items:center;justify-content:center;width:26px;height:26px;border-radius:50%;background:#1e293b;border:1px solid rgba(255,255,255,0.1);color:#fff;font-size:9px;font-weight:900;flex-shrink:0;\\\'>' + initials + '</span>\'">';
+      }
+      return '<span style="display:inline-flex;align-items:center;justify-content:center;width:26px;height:26px;border-radius:50%;background:#1e293b;border:1px solid rgba(255,255,255,0.1);color:#fff;font-size:9px;font-weight:900;flex-shrink:0;">' + initials + '</span>';
+    }
 
     let allMatches = [...DEFAULT_MATCHES];
     let currentFilter = 'available';
@@ -538,6 +743,12 @@
 
       container.innerHTML = '';
       filtered.forEach(m => {
+        const parts = m.confrontation.split(' x ').map(s => s.trim());
+        const homeTeam = parts[0] || m.confrontation;
+        const awayTeam = parts[1] || '';
+        const homeBadge = getTeamBadgeHtml(homeTeam);
+        const awayBadge = awayTeam ? getTeamBadgeHtml(awayTeam) : '';
+
         const card = document.createElement('div');
         card.className = 'match-card';
         card.innerHTML = `
@@ -546,10 +757,22 @@
               <span class="match-time">${m.time}</span>
               <span class="match-champ">${m.championship}</span>
             </div>
-            <div class="match-teams">${m.confrontation}</div>
+            
+            <div style="margin: 10px 0; padding: 8px 10px; background: rgba(0,0,0,0.4); border-radius: 12px; border: 1px solid rgba(255,255,255,0.05); display: flex; align-items: center; justify-content: space-between; gap: 8px;">
+              <div style="display: flex; align-items: center; gap: 8px; flex: 1; min-width: 0;">
+                ${homeBadge}
+                <span style="font-weight: 800; font-size: 0.85rem; color: #fff; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">${homeTeam}</span>
+              </div>
+              <span style="background: rgba(220,38,38,0.2); color: #f87171; border: 1px solid rgba(220,38,38,0.4); border-radius: 6px; font-size: 10px; font-weight: 900; padding: 2px 6px; flex-shrink: 0;">VS</span>
+              <div style="display: flex; align-items: center; justify-content: flex-end; gap: 8px; flex: 1; min-width: 0; text-align: right;">
+                <span style="font-weight: 800; font-size: 0.85rem; color: #fff; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">${awayTeam || 'A definir'}</span>
+                ${awayBadge}
+              </div>
+            </div>
+
             <div class="match-channels"><strong>Canais:</strong> ${m.channels}</div>
           </div>
-          <div style="display:flex; justify-content:space-between; align-items:center;">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-top: 10px;">
             ${m.available ? `<button class="btn-watch" onclick="playChannel('${m.matchedId}')">Assistir no ${m.matchedName} ▶</button>` : `<span style="font-size:0.75rem; color:#64748b;">Streaming / Externa</span>`}
           </div>
         `;
