@@ -3,169 +3,40 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Portal com Player do Servidor - Canais ao Vivo</title>
+  <title>Portal com Player do Servidor - Canais e Guia de Jogos</title>
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-      background-color: #07090e;
-      color: #f1f5f9;
-      line-height: 1.5;
-    }
-    header {
-      background: #0f1420;
-      border-bottom: 1px solid rgba(255,255,255,0.08);
-      padding: 14px 20px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      position: sticky;
-      top: 0;
-      z-index: 100;
-    }
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      font-size: 1.15rem;
-      font-weight: 800;
-      color: #ffffff;
-      text-decoration: none;
-    }
-    .brand-icon {
-      width: 28px;
-      height: 28px;
-      background: #dc2626;
-      border-radius: 6px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: #fff;
-      font-weight: bold;
-    }
-    .server-banner {
-      background: #0b101d;
-      border-bottom: 1px solid rgba(255,255,255,0.06);
-      padding: 10px 20px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      font-size: 0.8rem;
-    }
-    .main-container {
-      max-width: 1600px;
-      margin: 0 auto;
-      padding: 20px;
-      display: grid;
-      grid-template-columns: 1fr 340px;
-      gap: 24px;
-    }
-    @media (max-width: 1024px) {
-      .main-container { grid-template-columns: 1fr; }
-    }
-    .player-wrapper {
-      position: relative;
-      width: 100%;
-      aspect-ratio: 16/9;
-      background: #000;
-      border-radius: 12px;
-      overflow: hidden;
-      border: 1px solid rgba(255,255,255,0.1);
-      box-shadow: 0 20px 40px rgba(0,0,0,0.6);
-    }
-    .player-wrapper iframe {
-      width: 100%;
-      height: 100%;
-      border: 0;
-    }
-    .player-details {
-      background: #0f1420;
-      border: 1px solid rgba(255,255,255,0.06);
-      border-radius: 12px;
-      padding: 18px;
-      margin-top: 14px;
-    }
-    .channel-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 12px;
-    }
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background-color: #07090e; color: #f1f5f9; line-height: 1.5; }
+    header { background: #0f1420; border-bottom: 1px solid rgba(255,255,255,0.08); padding: 14px 20px; display: flex; align-items: center; justify-content: space-between; position: sticky; top: 0; z-index: 100; }
+    .brand { display: flex; align-items: center; gap: 10px; font-size: 1.15rem; font-weight: 800; color: #ffffff; text-decoration: none; }
+    .brand-icon { width: 28px; height: 28px; background: #dc2626; border-radius: 6px; display: flex; align-items: center; justify-content: center; color: #fff; font-weight: bold; }
+    .main-container { max-width: 1600px; margin: 0 auto; padding: 20px; display: grid; grid-template-columns: 1fr 340px; gap: 24px; }
+    @media (max-width: 1024px) { .main-container { grid-template-columns: 1fr; } }
+    .player-wrapper { position: relative; width: 100%; aspect-ratio: 16/9; background: #000; border-radius: 12px; overflow: hidden; border: 1px solid rgba(255,255,255,0.1); box-shadow: 0 20px 40px rgba(0,0,0,0.6); }
+    .player-wrapper iframe { width: 100%; height: 100%; border: 0; }
+    .player-details { background: #0f1420; border: 1px solid rgba(255,255,255,0.06); border-radius: 12px; padding: 18px; margin-top: 14px; }
+    .channel-header { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
     .current-title { font-size: 1.4rem; font-weight: 800; color: #fff; }
     .current-desc { font-size: 0.85rem; color: #94a3b8; margin-top: 4px; }
-    .btn-direct {
-      background: #dc2626;
-      color: #fff;
-      text-decoration: none;
-      padding: 10px 18px;
-      border-radius: 8px;
-      font-weight: 700;
-      font-size: 0.85rem;
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      transition: background 0.15s ease;
-    }
-    .btn-direct:hover { background: #b91c1c; }
-    .sidebar {
-      background: #0f1420;
-      border: 1px solid rgba(255,255,255,0.06);
-      border-radius: 12px;
-      padding: 16px;
-      height: fit-content;
-      max-height: calc(100vh - 120px);
-      overflow-y: auto;
-    }
+    .btn-direct { background: #dc2626; color: #fff; text-decoration: none; padding: 10px 18px; border-radius: 8px; font-weight: 700; font-size: 0.85rem; display: inline-flex; align-items: center; gap: 6px; }
+    .sidebar { background: #0f1420; border: 1px solid rgba(255,255,255,0.06); border-radius: 12px; padding: 16px; height: fit-content; max-height: calc(100vh - 120px); overflow-y: auto; }
     .sidebar-title { font-size: 0.95rem; font-weight: 700; color: #fff; margin-bottom: 14px; }
-    .channel-item {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 12px;
-      padding: 10px;
-      border-radius: 8px;
-      background: rgba(0,0,0,0.3);
-      border: 1px solid rgba(255,255,255,0.04);
-      margin-bottom: 8px;
-      cursor: pointer;
-      transition: all 0.15s ease;
-    }
-    .channel-item:hover, .channel-item.active {
-      background: rgba(220, 38, 38, 0.15);
-      border-color: rgba(220, 38, 38, 0.5);
-    }
+    .channel-item { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 10px; border-radius: 8px; background: rgba(0,0,0,0.3); border: 1px solid rgba(255,255,255,0.04); margin-bottom: 8px; cursor: pointer; }
+    .channel-item:hover, .channel-item.active { background: rgba(220, 38, 38, 0.15); border-color: rgba(220, 38, 38, 0.5); }
     .item-info { flex: 1; }
     .item-name { font-size: 0.85rem; font-weight: 700; color: #fff; }
     .item-net { font-size: 0.75rem; color: #94a3b8; }
-    .btn-server-mini {
-      background: rgba(220, 38, 38, 0.2);
-      border: 1px solid rgba(220, 38, 38, 0.4);
-      color: #ef4444;
-      font-size: 0.7rem;
-      font-weight: 700;
-      padding: 4px 8px;
-      border-radius: 6px;
-      text-decoration: none;
-    }
-    .btn-server-mini:hover { background: #dc2626; color: #fff; }
+    .btn-server-mini { background: rgba(220, 38, 38, 0.2); border: 1px solid rgba(220, 38, 38, 0.4); color: #ef4444; font-size: 0.7rem; font-weight: 700; padding: 4px 8px; border-radius: 6px; text-decoration: none; }
   </style>
 </head>
 <body>
   <header>
     <a href="#" class="brand">
       <div class="brand-icon">▶</div>
-      <span>PLAYER DO SERVIDOR</span>
+      <span>PLAYER DO SERVIDOR & GUIA DE JOGOS</span>
     </a>
     <span style="font-size: 0.75rem; color: #ef4444; font-weight: bold;">redecanais.by/player3</span>
   </header>
-
-  <div class="server-banner">
-    <div>Servidor conectado: <strong id="server-url-display">https://redecanais.by/player3/ch.php?canal=premiereclubes</strong></div>
-    <a id="btn-server-top" href="https://redecanais.by/player3/ch.php?canal=premiereclubes" target="_blank" rel="noopener noreferrer" style="color: #ef4444; text-decoration: underline; font-weight: bold;">
-      Assistir no Servidor Oficial ↗
-    </a>
-  </div>
 
   <div class="main-container">
     <div class="player-section">
@@ -220,8 +91,6 @@
     const titleEl = document.getElementById('channel-name');
     const descEl = document.getElementById('channel-desc');
     const directBtn = document.getElementById('btn-direct-link');
-    const topServerBtn = document.getElementById('btn-server-top');
-    const serverUrlDisplay = document.getElementById('server-url-display');
 
     channels.forEach((ch, idx) => {
       const item = document.createElement('div');
@@ -235,8 +104,6 @@
         titleEl.textContent = ch.name;
         descEl.textContent = ch.desc;
         directBtn.href = ch.url;
-        topServerBtn.href = ch.url;
-        serverUrlDisplay.textContent = ch.url;
         window.scrollTo({ top: 0, behavior: 'smooth' });
       };
       list.appendChild(item);
