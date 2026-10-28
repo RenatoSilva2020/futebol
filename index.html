@@ -340,9 +340,12 @@
             <span>Guia de Jogos na TV Hoje</span>
             <span style="font-size: 0.7rem; background: #dc2626; color: #fff; padding: 2px 8px; border-radius: 4px;">AO VIVO</span>
           </div>
-          <div id="date-label" class="banner-sub">Carregando jogos atualizados em tempo real...</div>
+          <div style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap; margin-top: 4px;">
+            <div id="date-label" class="banner-sub" style="margin-top: 0;">Fonte Mantos do Futebol · Quarta – 28/10</div>
+            <span id="status-badge" style="font-size: 0.7rem; background: rgba(16, 185, 129, 0.15); color: #34d399; border: 1px solid rgba(16, 185, 129, 0.3); padding: 2px 8px; border-radius: 9999px; font-weight: 600;">● Grade do dia ativa (56 jogos)</span>
+          </div>
         </div>
-        <button onclick="loadMatches()" style="background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15); color: #fff; padding: 8px 14px; border-radius: 8px; font-weight: 700; cursor: pointer;">
+        <button onclick="checkLiveUpdates(true)" style="background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15); color: #fff; padding: 8px 14px; border-radius: 8px; font-weight: 700; cursor: pointer;">
           Atualizar Grade ⟳
         </button>
       </div>
@@ -423,7 +426,10 @@
       { id: "bandsports", name: "BANDSPORTS", net: "BandSports", url: "https://redecanais.by/player3/ch.php?canal=bandsports" }
     ];
 
-    let allMatches = [];
+    const DEFAULT_DATE = "Quarta – 28/10";
+    const DEFAULT_MATCHES = [{"time":"13h00","confrontation":"Al Nahda x Al Rayyan","championship":"AFC Champions League Two","channels":"Disney+","matchedId":null,"matchedName":null,"available":false},{"time":"14h00","confrontation":"Freiburg x Wolfsburg","championship":"Copa da Alemanha","channels":"Disney+","matchedId":null,"matchedName":null,"available":false},{"time":"14h00","confrontation":"Jaddeloh x Hertha Berlin","championship":"Copa da Alemanha","channels":"Disney+","matchedId":null,"matchedName":null,"available":false},{"time":"14h00","confrontation":"Paderborn x Stuttgart","championship":"Copa da Alemanha","channels":"Disney+","matchedId":null,"matchedName":null,"available":false},{"time":"14h00","confrontation":"Dynamo Dresden x Schalke 04","championship":"Copa da Alemanha","channels":"Disney+","matchedId":null,"matchedName":null,"available":false},{"time":"14h30","confrontation":"Venezia x Inter de Milão","championship":"Serie A","channels":"Youtube.com/@SportyNetBrasil, SportyNet e Disney+","matchedId":"sportynet-1","matchedName":"SPORTYNET 1","available":true},{"time":"14h30","confrontation":"Milan x Bolonga","championship":"Serie A","channels":"ESPN 4 e Disney+","matchedId":"espn-4","matchedName":"ESPN 4","available":true},{"time":"14h30","confrontation":"Parma x Udinese","championship":"Serie A","channels":"Disney+","matchedId":null,"matchedName":null,"available":false},{"time":"14h45","confrontation":"Bayern de Munique x Real Madrid","championship":"UEFA Champions League Feminina","channels":"Youtube.com/@espnbrasil e Disney+","matchedId":"espn-1","matchedName":"ESPN 1","available":true},{"time":"14h45","confrontation":"Chelsea x Roma","championship":"UEFA Champions League Feminina","channels":"ESPN 3 e Disney+","matchedId":"espn-3","matchedName":"ESPN 3","available":true},{"time":"14h45","confrontation":"Servette x OH Leuven","championship":"UEFA Champions League Feminina","channels":"Disney+","matchedId":null,"matchedName":null,"available":false},{"time":"15h00","confrontation":"Anaitasuna x Alavés","championship":"Copa do Rei","channels":"Disney+","matchedId":null,"matchedName":null,"available":false},{"time":"15h00","confrontation":"Tarancon x Levante","championship":"Copa do Rei","channels":"Disney+","matchedId":null,"matchedName":null,"available":false},{"time":"15h00","confrontation":"Sete de Setembro x Ipojuca","championship":"Campeonato Pernambucano 1° Turno","channels":"Youtube.com/@TVFPFPE","matchedId":null,"matchedName":null,"available":false},{"time":"15h00","confrontation":"Jaguar x Santa Fé","championship":"Campeonato Pernambucano 1° Turno","channels":"Youtube.com/@TVFPFPE","matchedId":null,"matchedName":null,"available":false},{"time":"16h30","confrontation":"Manchester City x Brighton","championship":"Copa da Liga Inglesa","channels":"Disney+","matchedId":null,"matchedName":null,"available":false},{"time":"16h45","confrontation":"Genoa x Juventus","championship":"Serie A","channels":"Youtube.com/@SportyNetBrasil, SportyNet e Disney+","matchedId":"sportynet-1","matchedName":"SPORTYNET 1","available":true},{"time":"16h45","confrontation":"Monza x Napoli","championship":"Serie A","channels":"Youtube.com/@espnbrasil e Disney+","matchedId":"espn-1","matchedName":"ESPN 1","available":true},{"time":"16h45","confrontation":"Sunderland x Brentford","championship":"Copa da Liga Inglesa","channels":"Disney+","matchedId":null,"matchedName":null,"available":false},{"time":"16h45","confrontation":"Fulham x Crystal Palace","championship":"Copa da Liga Inglesa","channels":"Disney+","matchedId":null,"matchedName":null,"available":false},{"time":"16h45","confrontation":"Bournemouth x Aston Villa","championship":"Copa da Liga Inglesa","channels":"Disney+","matchedId":null,"matchedName":null,"available":false},{"time":"16h45","confrontation":"Bayern de Munique x Magdeburg","championship":"Copa da Alemanha","channels":"ESPN 4 e Disney+","matchedId":"espn-4","matchedName":"ESPN 4","available":true},{"time":"16h45","confrontation":"Bayer Leverkusen x Nürnberg","championship":"Copa da Alemanha","channels":"Disney+","matchedId":null,"matchedName":null,"available":false},{"time":"16h45","confrontation":"Hannover 96 x Kaiserlautern","championship":"Copa da Alemanha","channels":"Disney+","matchedId":null,"matchedName":null,"available":false},{"time":"16h45","confrontation":"Holstein Kiel x Hoffenheim","championship":"Copa da Alemanha","channels":"Disney+","matchedId":null,"matchedName":null,"available":false},{"time":"17h00","confrontation":"Liverpool x Chelsea","championship":"Copa da Liga Inglesa","channels":"ESPN e Disney+","matchedId":"espn-1","matchedName":"ESPN 1","available":true},{"time":"17h00","confrontation":"Navalcarnero x Real Bétis","championship":"Copa do Rei","channels":"Disney+","matchedId":null,"matchedName":null,"available":false},{"time":"17h00","confrontation":"Salamanca x Celta de Vigo","championship":"Copa do Rei","channels":"Disney+","matchedId":null,"matchedName":null,"available":false},{"time":"17h00","confrontation":"Tavernes x Valencia","championship":"Copa do Rei","channels":"Disney+","matchedId":null,"matchedName":null,"available":false},{"time":"17h00","confrontation":"Hearts x Rangers","championship":"Campeonato Escocês","channels":"Youtube.com/@canalgoatbr","matchedId":null,"matchedName":null,"available":false},{"time":"17h00","confrontation":"Arsenal x Benfica","championship":"UEFA Champions League Feminina","channels":"ESPN 3 e Disney+","matchedId":"espn-3","matchedName":"ESPN 3","available":true},{"time":"17h00","confrontation":"Lyon x Inter de Milão","championship":"UEFA Champions League Feminina","channels":"Disney+","matchedId":null,"matchedName":null,"available":false},{"time":"17h00","confrontation":"Corinthians x Independiente Santa Fe","championship":"CONMEBOL Libertadores Feminina (Semifinal)","channels":"Youtube.com/@CazeTV, Youtube.com/@canalgolbrasil, Youtube.com/@UOLEsporte, Youtube.com/@NSports, Xsports, Sportv e NSports","matchedId":"sportv-1","matchedName":"SPORTV 1","available":true},{"time":"18h30","confrontation":"Carabobo x La Guaira","championship":"Campeonato Venezuelano","channels":"Youtube.com/@ligafutve","matchedId":null,"matchedName":null,"available":false},{"time":"19h30","confrontation":"Fluminense x Internacional","championship":"Brasileirão","channels":"Youtube.com/@CazeTV, Record e Premiere","matchedId":"premiere-c","matchedName":"PREMIERE","available":true},{"time":"19h30","confrontation":"Santos x Palmeiras","championship":"Brasileirão","channels":"Premiere","matchedId":"premiere-c","matchedName":"PREMIERE","available":true},{"time":"19h30","confrontation":"Red Bull Bragantino x Chapecoense","championship":"Brasileirão","channels":"Premiere","matchedId":"premiere-c","matchedName":"PREMIERE","available":true},{"time":"20h30","confrontation":"Inter Miami x FC Cincinnati","championship":"MLS","channels":"AppleTV","matchedId":null,"matchedName":null,"available":false},{"time":"20h30","confrontation":"Charlotte FC x CF Montreal","championship":"MLS","channels":"AppleTV","matchedId":null,"matchedName":null,"available":false},{"time":"20h30","confrontation":"NE Revolution x NY Red Bulls","championship":"MLS","channels":"AppleTV","matchedId":null,"matchedName":null,"available":false},{"time":"20h30","confrontation":"New York City x Atlanta United","championship":"MLS","channels":"AppleTV","matchedId":null,"matchedName":null,"available":false},{"time":"20h30","confrontation":"Toronto FC x DC United","championship":"MLS","channels":"AppleTV","matchedId":null,"matchedName":null,"available":false},{"time":"20h30","confrontation":"Metropolitanos x Portuguesa-VEN","championship":"Campeonato Venezuelano","channels":"Youtube.com/@ligafutve","matchedId":null,"matchedName":null,"available":false},{"time":"21h00","confrontation":"Cruzeiro x Olimpia","championship":"CONMEBOL Libertadores Feminina (Semifinal)","channels":"Youtube.com/@CazeTV, Youtube.com/@canalgolbrasil, Youtube.com/@UOLEsporte, Youtube.com/@NSports, Xsports, Sportv e NSports","matchedId":"sportv-1","matchedName":"SPORTV 1","available":true},{"time":"21h30","confrontation":"Bahia x São Paulo","championship":"Brasileirão","channels":"Youtube.com/@getv, Globo (BA, SP e parte da rede) e Premiere","matchedId":"premiere-c","matchedName":"PREMIERE","available":true},{"time":"21h30","confrontation":"Remo x Botafogo","championship":"Brasileirão","channels":"Globo (PA, RJ e parte da rede) e Premiere","matchedId":"premiere-c","matchedName":"PREMIERE","available":true},{"time":"21h30","confrontation":"Deportivo Saprissa x Firpo","championship":"CONCACAF Central American Cup","channels":"Disney+","matchedId":null,"matchedName":null,"available":false},{"time":"21h30","confrontation":"Austin FC x Real Salt Lake","championship":"MLS","channels":"AppleTV","matchedId":null,"matchedName":null,"available":false},{"time":"21h30","confrontation":"Chicago Fire x Orlando City","championship":"MLS","channels":"AppleTV","matchedId":null,"matchedName":null,"available":false},{"time":"21h30","confrontation":"FC Dallas x Columbus Crew","championship":"MLS","channels":"AppleTV","matchedId":null,"matchedName":null,"available":false},{"time":"21h30","confrontation":"Minnesota United x Sporting KC","championship":"MLS","channels":"AppleTV","matchedId":null,"matchedName":null,"available":false},{"time":"21h30","confrontation":"Nashville SC x Philadelphia Union","championship":"MLS","channels":"AppleTV","matchedId":null,"matchedName":null,"available":false},{"time":"21h30","confrontation":"St. Louis City x Portland Timbers","championship":"MLS","channels":"AppleTV","matchedId":null,"matchedName":null,"available":false},{"time":"23h30","confrontation":"SJ Earthquakes x Colorado Rapids","championship":"MLS","channels":"AppleTV","matchedId":null,"matchedName":null,"available":false},{"time":"23h30","confrontation":"Seattle Sounders x Houston Dynamo","championship":"MLS","channels":"AppleTV","matchedId":null,"matchedName":null,"available":false},{"time":"23h30","confrontation":"Vancouver Whitecaps x San Diego FC","championship":"MLS","channels":"AppleTV","matchedId":null,"matchedName":null,"available":false}];
+
+    let allMatches = [...DEFAULT_MATCHES];
     let currentFilter = 'available';
 
     function switchTab(tab) {
@@ -446,8 +452,10 @@
       const player = document.getElementById('main-player');
       player.src = ch.url;
       document.getElementById('player-title').textContent = ch.name;
+      document.getElementById('player-desc').textContent = ch.net + ' · Transmissão oficial via player3 redecanais';
       document.getElementById('btn-player-direct').href = ch.url;
-      document.getElementById('btn-top-server').href = ch.url;
+      const btnTop = document.getElementById('btn-top-server');
+      if (btnTop) btnTop.href = ch.url;
 
       document.querySelectorAll('.channel-item').forEach(el => el.classList.remove('active'));
       const activeEl = document.getElementById('item-' + ch.id);
@@ -467,10 +475,9 @@
       chList.appendChild(item);
     });
 
-    // Parse matches HTML
     function parseMatchesHtml(html) {
       const dateMatch = html.match(/<h2><span[^>]*>(.*?)<\/span><\/h2>/i);
-      const dateLabel = dateMatch ? dateMatch[1].replace(/&#8211;/g, '–').trim() : 'Jogos de Hoje';
+      const dateLabel = dateMatch ? dateMatch[1].replace(/&#8211;/g, '–').trim() : DEFAULT_DATE;
       document.getElementById('date-label').textContent = 'Fonte Mantos do Futebol · ' + dateLabel;
 
       const regex = /<h3><strong>(.*?)<\/strong><\/h3>[\s\S]*?<p><span[^>]*><strong>Canais:\s*(.*?)<\/strong><\/span><\/p>/gi;
@@ -511,45 +518,6 @@
       return list;
     }
 
-    async function loadMatches() {
-      const container = document.getElementById('matches-container');
-      container.innerHTML = '<div style="grid-column: 1/-1; text-align: center; padding: 40px; color: #94a3b8;">Carregando grade de jogos...</div>';
-
-      try {
-        // Try local server endpoint first, fallback to AllOrigins proxy on static GitHub Pages
-        let html = '';
-        try {
-          const res = await fetch('/api/jogos-hoje');
-          if (res.ok) {
-            const data = await res.json();
-            if (data.matches && data.matches.length > 0) {
-              document.getElementById('date-label').textContent = 'Fonte Mantos do Futebol · ' + (data.dateLabel || 'Jogos de Hoje');
-              allMatches = data.matches.map(m => ({
-                time: m.time,
-                confrontation: m.confrontation,
-                championship: m.championship,
-                channels: m.channelsRaw,
-                matchedId: m.matchedChannel ? m.matchedChannel.id : null,
-                matchedName: m.matchedChannel ? m.matchedChannel.name : null,
-                available: m.isAvailableInApp
-              }));
-              renderMatches();
-              return;
-            }
-          }
-        } catch (e) {}
-
-        // Fallback: Fetch directly through AllOrigins CORS proxy for GitHub Pages
-        const proxyRes = await fetch('https://api.allorigins.win/raw?url=' + encodeURIComponent('https://mantosdofutebol.com.br/guia-de-jogos-tv-hoje-ao-vivo/'));
-        html = await proxyRes.text();
-        allMatches = parseMatchesHtml(html);
-        renderMatches();
-      } catch (err) {
-        console.error(err);
-        container.innerHTML = '<div style="grid-column: 1/-1; text-align: center; padding: 40px; color: #ef4444;">Erro ao carregar jogos. Verifique sua conexão.</div>';
-      }
-    }
-
     function renderMatches() {
       const container = document.getElementById('matches-container');
       const q = (document.getElementById('search-box').value || '').toLowerCase().trim();
@@ -582,7 +550,7 @@
             <div class="match-channels"><strong>Canais:</strong> ${m.channels}</div>
           </div>
           <div style="display:flex; justify-content:space-between; align-items:center;">
-            ${m.available ? `<button class="btn-watch" onclick="playChannel('${m.matchedId}')">Assistir no ${m.matchedName} ▶</button>` : `<span style="font-size:0.75rem; color:#64748b;">Streaming / Outro</span>`}
+            ${m.available ? `<button class="btn-watch" onclick="playChannel('${m.matchedId}')">Assistir no ${m.matchedName} ▶</button>` : `<span style="font-size:0.75rem; color:#64748b;">Streaming / Externa</span>`}
           </div>
         `;
         container.appendChild(card);
@@ -600,7 +568,61 @@
       renderMatches();
     }
 
-    loadMatches();
+    // Live update check (background non-blocking, preserves DEFAULT_MATCHES)
+    async function checkLiveUpdates(isManual = false) {
+      const statusBadge = document.getElementById('status-badge');
+      if (isManual && statusBadge) statusBadge.textContent = 'Verificando atualizações...';
+
+      try {
+        // 1. Try local backend
+        try {
+          const res = await fetch('/api/jogos-hoje');
+          if (res.ok) {
+            const data = await res.json();
+            if (data.matches && data.matches.length > 0) {
+              document.getElementById('date-label').textContent = 'Fonte Mantos do Futebol · ' + (data.dateLabel || DEFAULT_DATE);
+              allMatches = data.matches.map(m => ({
+                time: m.time,
+                confrontation: m.confrontation,
+                championship: m.championship,
+                channels: m.channelsRaw,
+                matchedId: m.matchedChannel ? m.matchedChannel.id : null,
+                matchedName: m.matchedChannel ? m.matchedChannel.name : null,
+                available: m.isAvailableInApp
+              }));
+              renderMatches();
+              if (statusBadge) statusBadge.textContent = '● Jogos atualizados ao vivo';
+              return;
+            }
+          }
+        } catch(e) {}
+
+        // 2. Try proxy for GitHub Pages
+        const proxyUrl = 'https://api.allorigins.win/raw?url=' + encodeURIComponent('https://mantosdofutebol.com.br/guia-de-jogos-tv-hoje-ao-vivo/');
+        const proxyRes = await fetch(proxyUrl);
+        if (proxyRes.ok) {
+          const html = await proxyRes.text();
+          const parsed = parseMatchesHtml(html);
+          if (parsed && parsed.length > 0) {
+            allMatches = parsed;
+            renderMatches();
+            if (statusBadge) statusBadge.textContent = '● Jogos atualizados via Mantos';
+            return;
+          }
+        }
+      } catch(err) {
+        console.log('Usando grade em cache offline:', err);
+      }
+
+      // If background fetch failed, keep allMatches intact!
+      if (statusBadge) statusBadge.textContent = '● Grade do dia ativa (' + allMatches.length + ' jogos)';
+    }
+
+    // INITIALIZE: Render immediately from DEFAULT_MATCHES!
+    document.getElementById('date-label').textContent = 'Fonte Mantos do Futebol · ' + DEFAULT_DATE;
+    renderMatches();
+    // Then attempt background refresh
+    setTimeout(() => checkLiveUpdates(false), 800);
   </script>
 </body>
 </html>
