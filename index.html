@@ -3,280 +3,244 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Canais Esportivos ao Vivo</title>
+  <title>Portal com Player do Servidor - Canais ao Vivo</title>
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-      background-color: #0b0f19;
-      color: #e2e8f0;
-      padding: 32px 16px;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background-color: #07090e;
+      color: #f1f5f9;
+      line-height: 1.5;
     }
-    .wrapper { max-width: 1080px; margin: 0 auto; }
     header {
-      margin-bottom: 32px;
-      padding-bottom: 20px;
-      border-bottom: 1px solid #1e293b;
+      background: #0f1420;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      padding: 14px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 1.15rem;
+      font-weight: 800;
+      color: #ffffff;
+      text-decoration: none;
+    }
+    .brand-icon {
+      width: 28px;
+      height: 28px;
+      background: #dc2626;
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      font-weight: bold;
+    }
+    .server-banner {
+      background: #0b101d;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      padding: 10px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 0.8rem;
+    }
+    .main-container {
+      max-width: 1600px;
+      margin: 0 auto;
+      padding: 20px;
+      display: grid;
+      grid-template-columns: 1fr 340px;
+      gap: 24px;
+    }
+    @media (max-width: 1024px) {
+      .main-container { grid-template-columns: 1fr; }
+    }
+    .player-wrapper {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 16/9;
+      background: #000;
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,0.1);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+    }
+    .player-wrapper iframe {
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+    .player-details {
+      background: #0f1420;
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 12px;
+      padding: 18px;
+      margin-top: 14px;
+    }
+    .channel-header {
       display: flex;
       justify-content: space-between;
       align-items: center;
       flex-wrap: wrap;
-      gap: 16px;
-    }
-    h1 { font-size: 1.75rem; font-weight: 700; color: #ffffff; }
-    .subtitle { font-size: 0.9rem; color: #94a3b8; margin-top: 4px; }
-    .category-title {
-      font-size: 1.15rem;
-      font-weight: 600;
-      color: #f1f5f9;
-      margin: 28px 0 14px;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-    .badge {
-      display: inline-block;
-      font-size: 0.7rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      padding: 2px 8px;
-      border-radius: 4px;
-    }
-    .badge-premiere { background: #059669; color: #fff; }
-    .badge-sportv { background: #2563eb; color: #fff; }
-    .badge-sportynet { background: #0d9488; color: #fff; }
-    .badge-espn { background: #dc2626; color: #fff; }
-    .badge-bandsports { background: #d97706; color: #fff; }
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
       gap: 12px;
     }
-    .card {
-      background: #111827;
-      border: 1px solid #1f2937;
-      border-radius: 8px;
-      padding: 16px;
+    .current-title { font-size: 1.4rem; font-weight: 800; color: #fff; }
+    .current-desc { font-size: 0.85rem; color: #94a3b8; margin-top: 4px; }
+    .btn-direct {
+      background: #dc2626;
+      color: #fff;
       text-decoration: none;
-      color: inherit;
+      padding: 10px 18px;
+      border-radius: 8px;
+      font-weight: 700;
+      font-size: 0.85rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: background 0.15s ease;
+    }
+    .btn-direct:hover { background: #b91c1c; }
+    .sidebar {
+      background: #0f1420;
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 12px;
+      padding: 16px;
+      height: fit-content;
+      max-height: calc(100vh - 120px);
+      overflow-y: auto;
+    }
+    .sidebar-title { font-size: 0.95rem; font-weight: 700; color: #fff; margin-bottom: 14px; }
+    .channel-item {
       display: flex;
-      flex-direction: column;
+      align-items: center;
       justify-content: space-between;
+      gap: 12px;
+      padding: 10px;
+      border-radius: 8px;
+      background: rgba(0,0,0,0.3);
+      border: 1px solid rgba(255,255,255,0.04);
+      margin-bottom: 8px;
+      cursor: pointer;
       transition: all 0.15s ease;
     }
-    .card:hover {
-      border-color: #3b82f6;
-      background: #172033;
-      transform: translateY(-2px);
+    .channel-item:hover, .channel-item.active {
+      background: rgba(220, 38, 38, 0.15);
+      border-color: rgba(220, 38, 38, 0.5);
     }
-    .card-title {
-      font-size: 1.05rem;
-      font-weight: 600;
-      color: #fff;
-      margin-bottom: 4px;
-    }
-    .card-desc {
-      font-size: 0.8rem;
-      color: #9ca3af;
-      margin-bottom: 14px;
-    }
-    .btn {
-      display: block;
-      text-align: center;
-      background: #2563eb;
-      color: #fff;
-      font-size: 0.85rem;
-      font-weight: 600;
-      padding: 8px 12px;
+    .item-info { flex: 1; }
+    .item-name { font-size: 0.85rem; font-weight: 700; color: #fff; }
+    .item-net { font-size: 0.75rem; color: #94a3b8; }
+    .btn-server-mini {
+      background: rgba(220, 38, 38, 0.2);
+      border: 1px solid rgba(220, 38, 38, 0.4);
+      color: #ef4444;
+      font-size: 0.7rem;
+      font-weight: 700;
+      padding: 4px 8px;
       border-radius: 6px;
       text-decoration: none;
     }
-    .card:hover .btn { background: #1d4ed8; }
-    footer {
-      text-align: center;
-      margin-top: 48px;
-      font-size: 0.85rem;
-      color: #6b7280;
-    }
+    .btn-server-mini:hover { background: #dc2626; color: #fff; }
   </style>
 </head>
 <body>
-  <div class="wrapper">
-    <header>
-      <div>
-        <h1>Canais Esportivos ao Vivo</h1>
-        <p class="subtitle">Guia direto com 20 canais para transmissão online</p>
-      </div>
-    </header>
+  <header>
+    <a href="#" class="brand">
+      <div class="brand-icon">▶</div>
+      <span>PLAYER DO SERVIDOR</span>
+    </a>
+    <span style="font-size: 0.75rem; color: #ef4444; font-weight: bold;">redecanais.by/player3</span>
+  </header>
 
-    <!-- PREMIERE -->
-    <div class="category-title"><span class="badge badge-premiere">Premiere</span> Premiere FC</div>
-    <div class="grid">
-      <a class="card" href="https://redecanais.by/player3/ch.php?canal=premiereclubes" target="_blank" rel="noopener noreferrer">
-        <div>
-          <div class="card-title">PREMIERE C</div>
-          <div class="card-desc">Premiere Clubes ao Vivo</div>
-        </div>
-        <span class="btn">Assistir Canal</span>
-      </a>
-      <a class="card" href="https://redecanais.by/player3/ch.php?canal=premiere2" target="_blank" rel="noopener noreferrer">
-        <div>
-          <div class="card-title">PREMIERE 2</div>
-          <div class="card-desc">Canal Premiere 2</div>
-        </div>
-        <span class="btn">Assistir Canal</span>
-      </a>
-      <a class="card" href="https://redecanais.by/player3/ch.php?canal=premiere3" target="_blank" rel="noopener noreferrer">
-        <div>
-          <div class="card-title">PREMIERE 3</div>
-          <div class="card-desc">Canal Premiere 3</div>
-        </div>
-        <span class="btn">Assistir Canal</span>
-      </a>
-      <a class="card" href="https://redecanais.by/player3/ch.php?canal=premiere4" target="_blank" rel="noopener noreferrer">
-        <div>
-          <div class="card-title">PREMIERE 4</div>
-          <div class="card-desc">Canal Premiere 4</div>
-        </div>
-        <span class="btn">Assistir Canal</span>
-      </a>
-      <a class="card" href="https://redecanais.by/player3/ch.php?canal=premiere5" target="_blank" rel="noopener noreferrer">
-        <div>
-          <div class="card-title">PREMIERE 5</div>
-          <div class="card-desc">Canal Premiere 5</div>
-        </div>
-        <span class="btn">Assistir Canal</span>
-      </a>
-      <a class="card" href="https://redecanais.by/player3/ch.php?canal=premiere6" target="_blank" rel="noopener noreferrer">
-        <div>
-          <div class="card-title">PREMIERE 6</div>
-          <div class="card-desc">Canal Premiere 6</div>
-        </div>
-        <span class="btn">Assistir Canal</span>
-      </a>
-      <a class="card" href="https://redecanais.by/player3/ch.php?canal=premiere7" target="_blank" rel="noopener noreferrer">
-        <div>
-          <div class="card-title">PREMIERE 7</div>
-          <div class="card-desc">Canal Premiere 7</div>
-        </div>
-        <span class="btn">Assistir Canal</span>
-      </a>
-    </div>
-
-    <!-- SPORTV -->
-    <div class="category-title"><span class="badge badge-sportv">SporTV</span> Canais SporTV</div>
-    <div class="grid">
-      <a class="card" href="https://redecanais.by/player3/ch.php?canal=sportv1" target="_blank" rel="noopener noreferrer">
-        <div>
-          <div class="card-title">SPORTV 1</div>
-          <div class="card-desc">SporTV Principal</div>
-        </div>
-        <span class="btn">Assistir Canal</span>
-      </a>
-      <a class="card" href="https://redecanais.by/player3/ch.php?canal=sportv2" target="_blank" rel="noopener noreferrer">
-        <div>
-          <div class="card-title">SPORTV 2</div>
-          <div class="card-desc">SporTV 2</div>
-        </div>
-        <span class="btn">Assistir Canal</span>
-      </a>
-      <a class="card" href="https://redecanais.by/player3/ch.php?canal=sportv3" target="_blank" rel="noopener noreferrer">
-        <div>
-          <div class="card-title">SPORTV 3</div>
-          <div class="card-desc">SporTV 3</div>
-        </div>
-        <span class="btn">Assistir Canal</span>
-      </a>
-    </div>
-
-    <!-- SPORTYNET -->
-    <div class="category-title"><span class="badge badge-sportynet">Sportynet</span> Canais Sportynet</div>
-    <div class="grid">
-      <a class="card" href="https://redecanais.by/player3/ch.php?canal=sportynet1" target="_blank" rel="noopener noreferrer">
-        <div>
-          <div class="card-title">SPORTYNET 1</div>
-          <div class="card-desc">Sportynet 1</div>
-        </div>
-        <span class="btn">Assistir Canal</span>
-      </a>
-      <a class="card" href="https://redecanais.by/player3/ch.php?canal=sportynet2" target="_blank" rel="noopener noreferrer">
-        <div>
-          <div class="card-title">SPORTYNET 2</div>
-          <div class="card-desc">Sportynet 2</div>
-        </div>
-        <span class="btn">Assistir Canal</span>
-      </a>
-      <a class="card" href="https://redecanais.by/player3/ch.php?canal=sportynet3" target="_blank" rel="noopener noreferrer">
-        <div>
-          <div class="card-title">SPORTYNET 3</div>
-          <div class="card-desc">Sportynet 3</div>
-        </div>
-        <span class="btn">Assistir Canal</span>
-      </a>
-    </div>
-
-    <!-- ESPN -->
-    <div class="category-title"><span class="badge badge-espn">ESPN</span> Canais ESPN</div>
-    <div class="grid">
-      <a class="card" href="https://redecanais.by/player3/ch.php?canal=espn" target="_blank" rel="noopener noreferrer">
-        <div>
-          <div class="card-title">ESPN 1</div>
-          <div class="card-desc">ESPN Principal</div>
-        </div>
-        <span class="btn">Assistir Canal</span>
-      </a>
-      <a class="card" href="https://redecanais.by/player3/ch.php?canal=espn2" target="_blank" rel="noopener noreferrer">
-        <div>
-          <div class="card-title">ESPN 2</div>
-          <div class="card-desc">ESPN 2</div>
-        </div>
-        <span class="btn">Assistir Canal</span>
-      </a>
-      <a class="card" href="https://redecanais.by/player3/ch.php?canal=espn3" target="_blank" rel="noopener noreferrer">
-        <div>
-          <div class="card-title">ESPN 3</div>
-          <div class="card-desc">ESPN 3</div>
-        </div>
-        <span class="btn">Assistir Canal</span>
-      </a>
-      <a class="card" href="https://redecanais.by/player3/ch.php?canal=espn4" target="_blank" rel="noopener noreferrer">
-        <div>
-          <div class="card-title">ESPN 4</div>
-          <div class="card-desc">ESPN 4</div>
-        </div>
-        <span class="btn">Assistir Canal</span>
-      </a>
-      <a class="card" href="https://redecanais.by/player3/ch.php?canal=espn5" target="_blank" rel="noopener noreferrer">
-        <div>
-          <div class="card-title">ESPN 5</div>
-          <div class="card-desc">ESPN 5</div>
-        </div>
-        <span class="btn">Assistir Canal</span>
-      </a>
-      <a class="card" href="https://redecanais.by/player3/ch.php?canal=espn6" target="_blank" rel="noopener noreferrer">
-        <div>
-          <div class="card-title">ESPN 6</div>
-          <div class="card-desc">ESPN 6</div>
-        </div>
-        <span class="btn">Assistir Canal</span>
-      </a>
-    </div>
-
-    <!-- BANDSPORTS -->
-    <div class="category-title"><span class="badge badge-bandsports">BandSports</span> BandSports</div>
-    <div class="grid">
-      <a class="card" href="https://redecanais.by/player3/ch.php?canal=bandsports" target="_blank" rel="noopener noreferrer">
-        <div>
-          <div class="card-title">BANDSPORTS</div>
-          <div class="card-desc">BandSports Oficial</div>
-        </div>
-        <span class="btn">Assistir Canal</span>
-      </a>
-    </div>
-
-    <footer>
-      <p>Arquivo HTML autônomo gerado com os links esportivos fornecidos.</p>
-    </footer>
+  <div class="server-banner">
+    <div>Servidor conectado: <strong id="server-url-display">https://redecanais.by/player3/ch.php?canal=premiereclubes</strong></div>
+    <a id="btn-server-top" href="https://redecanais.by/player3/ch.php?canal=premiereclubes" target="_blank" rel="noopener noreferrer" style="color: #ef4444; text-decoration: underline; font-weight: bold;">
+      Assistir no Servidor Oficial ↗
+    </a>
   </div>
+
+  <div class="main-container">
+    <div class="player-section">
+      <div class="player-wrapper">
+        <iframe id="main-player" src="https://redecanais.by/player3/ch.php?canal=premiereclubes" allowfullscreen allow="autoplay; fullscreen; encrypted-media"></iframe>
+      </div>
+      <div class="player-details">
+        <div class="channel-header">
+          <div>
+            <div id="channel-name" class="current-title">PREMIERE C</div>
+            <div id="channel-desc" class="current-desc">Transmissão Premiere Clubes: Campeonato Brasileiro Série A</div>
+          </div>
+          <a id="btn-direct-link" href="https://redecanais.by/player3/ch.php?canal=premiereclubes" target="_blank" rel="noopener noreferrer" class="btn-direct">
+            Abrir Player do Servidor ↗
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="sidebar">
+      <div class="sidebar-title">Lista de Canais (20)</div>
+      <div id="channels-list"></div>
+    </div>
+  </div>
+
+  <script>
+    const channels = [
+      { name: "PREMIERE C", net: "Premiere", desc: "Premiere Clubes ao Vivo", url: "https://redecanais.by/player3/ch.php?canal=premiereclubes" },
+      { name: "PREMIERE 2", net: "Premiere", desc: "Canal Premiere 2", url: "https://redecanais.by/player3/ch.php?canal=premiere2" },
+      { name: "PREMIERE 3", net: "Premiere", desc: "Canal Premiere 3", url: "https://redecanais.by/player3/ch.php?canal=premiere3" },
+      { name: "PREMIERE 4", net: "Premiere", desc: "Canal Premiere 4", url: "https://redecanais.by/player3/ch.php?canal=premiere4" },
+      { name: "PREMIERE 5", net: "Premiere", desc: "Canal Premiere 5", url: "https://redecanais.by/player3/ch.php?canal=premiere5" },
+      { name: "PREMIERE 6", net: "Premiere", desc: "Canal Premiere 6", url: "https://redecanais.by/player3/ch.php?canal=premiere6" },
+      { name: "PREMIERE 7", net: "Premiere", desc: "Canal Premiere 7", url: "https://redecanais.by/player3/ch.php?canal=premiere7" },
+      { name: "SPORTV 1", net: "SporTV", desc: "SporTV Principal", url: "https://redecanais.by/player3/ch.php?canal=sportv1" },
+      { name: "SPORTV 2", net: "SporTV", desc: "SporTV 2 Vôlei e NBB", url: "https://redecanais.by/player3/ch.php?canal=sportv2" },
+      { name: "SPORTV 3", net: "SporTV", desc: "SporTV 3 Multiesportes", url: "https://redecanais.by/player3/ch.php?canal=sportv3" },
+      { name: "SPORTYNET 1", net: "Sportynet", desc: "Sportynet 1 Digital", url: "https://redecanais.by/player3/ch.php?canal=sportynet1" },
+      { name: "SPORTYNET 2", net: "Sportynet", desc: "Sportynet 2 Futebol", url: "https://redecanais.by/player3/ch.php?canal=sportynet2" },
+      { name: "SPORTYNET 3", net: "Sportynet", desc: "Sportynet 3 Lutas", url: "https://redecanais.by/player3/ch.php?canal=sportynet3" },
+      { name: "ESPN 1", net: "ESPN", desc: "ESPN Principal Premier League", url: "https://redecanais.by/player3/ch.php?canal=espn" },
+      { name: "ESPN 2", net: "ESPN", desc: "ESPN 2 NFL e NBA", url: "https://redecanais.by/player3/ch.php?canal=espn2" },
+      { name: "ESPN 3", net: "ESPN", desc: "ESPN 3 Ligas Europeias", url: "https://redecanais.by/player3/ch.php?canal=espn3" },
+      { name: "ESPN 4", net: "ESPN", desc: "ESPN 4 Tênis e Rugby", url: "https://redecanais.by/player3/ch.php?canal=espn4" },
+      { name: "ESPN 5", net: "ESPN", desc: "ESPN 5 Futebol Holandês", url: "https://redecanais.by/player3/ch.php?canal=espn5" },
+      { name: "ESPN 6", net: "ESPN", desc: "ESPN 6 Quadras Extras", url: "https://redecanais.by/player3/ch.php?canal=espn6" },
+      { name: "BANDSPORTS", net: "BandSports", desc: "BandSports F1 e Motor", url: "https://redecanais.by/player3/ch.php?canal=bandsports" }
+    ];
+
+    const list = document.getElementById('channels-list');
+    const player = document.getElementById('main-player');
+    const titleEl = document.getElementById('channel-name');
+    const descEl = document.getElementById('channel-desc');
+    const directBtn = document.getElementById('btn-direct-link');
+    const topServerBtn = document.getElementById('btn-server-top');
+    const serverUrlDisplay = document.getElementById('server-url-display');
+
+    channels.forEach((ch, idx) => {
+      const item = document.createElement('div');
+      item.className = 'channel-item' + (idx === 0 ? ' active' : '');
+      item.innerHTML = '<div class="item-info"><div class="item-name">' + ch.name + '</div><div class="item-net">' + ch.desc + '</div></div>' +
+                       '<a href="' + ch.url + '" target="_blank" class="btn-server-mini" onclick="event.stopPropagation()">Abrir ↗</a>';
+      item.onclick = () => {
+        document.querySelectorAll('.channel-item').forEach(el => el.classList.remove('active'));
+        item.classList.add('active');
+        player.src = ch.url;
+        titleEl.textContent = ch.name;
+        descEl.textContent = ch.desc;
+        directBtn.href = ch.url;
+        topServerBtn.href = ch.url;
+        serverUrlDisplay.textContent = ch.url;
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      };
+      list.appendChild(item);
+    });
+  </script>
 </body>
 </html>
