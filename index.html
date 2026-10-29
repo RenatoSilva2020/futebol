@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>REDE ESPORTE - Guia de Jogos na TV & Player ao Vivo</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23dc2626'><circle cx='12' cy='12' r='10'/><polygon points='10,8 16,12 10,16' fill='white'/></svg>">
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
@@ -525,52 +526,22 @@
     "url": "https://redecanais.by/player3/ch.php?canal=bandsports"
   },
   {
-    "id": "custom-1793271724388",
-    "name": "CAZETV1",
-    "net": "CazéTV",
-    "url": "https://ww0.embedtv.cc/caze1"
-  },
-  {
-    "id": "custom-1793271746420",
-    "name": "CAZETV2",
-    "net": "CazéTV",
-    "url": "https://ww0.embedtv.cc/caze2"
-  },
-  {
-    "id": "custom-1793271762646",
-    "name": "CAZETV3",
-    "net": "CazéTV",
-    "url": "https://ww0.embedtv.cc/caze3"
-  },
-  {
-    "id": "custom-1793271874939",
-    "name": "RECORD",
-    "net": "Record",
-    "url": "https://redecanais.by/player3/ch.php?canal=record"
-  },
-  {
-    "id": "custom-1793271895443",
-    "name": "SBT",
-    "net": "Sbt",
-    "url": "https://redecanais.by/player3/ch.php?canal=sbt"
-  },
-  {
-    "id": "custom-1793271922107",
-    "name": "DISNEY PLUS1",
+    "id": "custom-1793276357476",
+    "name": "DISNEY+ 1",
     "net": "Disney",
-    "url": "https://ww0.embedtv.cc/disneyplus1"
+    "url": "//ww0.embedtv.cc/disneyplus1"
   },
   {
-    "id": "custom-1793271934795",
-    "name": "DISNEY PLUS2",
+    "id": "custom-1793276404909",
+    "name": "DISNNEY+ 2",
     "net": "Disney",
-    "url": "https://ww0.embedtv.cc/disneyplus2"
+    "url": "//ww0.embedtv.cc/disneyplus2"
   },
   {
-    "id": "custom-1793271947124",
-    "name": "DISNEY PLUS3",
+    "id": "custom-1793276423500",
+    "name": "DISNEY+ 3",
     "net": "Disney",
-    "url": "https://ww0.embedtv.cc/disneyplus3"
+    "url": "//ww0.embedtv.cc/disneyplus3"
   }
 ];
 
@@ -700,7 +671,7 @@
       }
       const initials = (teamName.slice(0, 3)).toUpperCase();
       if (slug) {
-        const url = 'https://assets.footylogos.com/previews/' + slug + '/' + slug + '-logo-footylogos-320.webp';
+        let template = "https://football-logos.cc/all/"; const url = template.includes('{slug}') ? template.replace(/{slug}/g, slug) : (template.replace(/\/+$/, '') + '/' + slug + '/' + slug + '-logo-footylogos-320.webp');
         return '<img src="' + url + '" alt="' + teamName + '" style="width:26px;height:26px;object-fit:contain;flex-shrink:0;" onerror="this.outerHTML=\'<span style=\\\'display:inline-flex;align-items:center;justify-content:center;width:26px;height:26px;border-radius:50%;background:#1e293b;border:1px solid rgba(255,255,255,0.1);color:#fff;font-size:9px;font-weight:900;flex-shrink:0;\\\'>' + initials + '</span>\'">';
       }
       return '<span style="display:inline-flex;align-items:center;justify-content:center;width:26px;height:26px;border-radius:50%;background:#1e293b;border:1px solid rgba(255,255,255,0.1);color:#fff;font-size:9px;font-weight:900;flex-shrink:0;">' + initials + '</span>';
