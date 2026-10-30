@@ -365,6 +365,7 @@
       <div class="filter-bar">
         <div class="filter-tabs">
           <button class="filter-btn active" onclick="setFilter('available', this)">Canais do Portal</button>
+          <button class="filter-btn" onclick="setFilter('youtube', this)">No YouTube</button>
           <button class="filter-btn" onclick="setFilter('all', this)">Todos os Jogos</button>
           <button class="filter-btn" onclick="setFilter('brasileirao', this)">Brasileirão</button>
           <button class="filter-btn" onclick="setFilter('seriea', this)">Serie A</button>
@@ -802,6 +803,72 @@
       return '<span style="display:inline-flex;align-items:center;justify-content:center;position:relative;width:26px;height:26px;flex-shrink:0;"><img src="' + url + '" alt="' + teamName + '" style="width:26px;height:26px;object-fit:contain;" onerror="this.style.display=\'none\';if(this.nextElementSibling)this.nextElementSibling.style.display=\'inline-flex\';"><span style="display:none;align-items:center;justify-content:center;width:26px;height:26px;border-radius:50%;background:#1e293b;border:1px solid rgba(255,255,255,0.1);color:#fff;font-size:9px;font-weight:900;">' + initials + '</span></span>';
     }
 
+    function extractYouTubeInfo(channelsStr, confrontation) {
+      if (!channelsStr) return null;
+      const raw = channelsStr.trim();
+      const lower = raw.toLowerCase();
+
+      // 1. Explicit handle in text (e.g. "Youtube.com/@canalgoatbr" or "@CazeTV")
+      const handleMatch = raw.match(/@([A-Za-z0-9_.-]+)/);
+      if (handleMatch) {
+        const handle = handleMatch[1];
+        let displayName = '@' + handle;
+        const hLow = handle.toLowerCase();
+        if (hLow.includes('cazetv') || hLow.includes('caze')) displayName = 'CazéTV';
+        else if (hLow.includes('canalgoat') || hLow.includes('goat')) displayName = 'Canal Goat';
+        else if (hLow.includes('jovempanesportes') || hLow.includes('jovempan')) displayName = 'Jovem Pan Esportes';
+        else if (hLow.includes('canalgolbrasil') || hLow.includes('golbrasil')) displayName = 'Canal Gol Brasil';
+        else if (hLow.includes('ulissescostatv') || hLow.includes('ulisses')) displayName = 'Ulisses Costa TV';
+        else if (hLow.includes('sportynetbrasil') || hLow.includes('sportynet')) displayName = 'SportyNet Brasil';
+        else if (hLow.includes('paulistao')) displayName = 'Paulistão';
+        else if (hLow.includes('desimpedidos')) displayName = 'Desimpedidos';
+
+        return {
+          url: 'https://www.youtube.com/@' + handle,
+          name: displayName,
+          isExactChannel: true
+        };
+      }
+
+      // 2. Known YouTube broadcast channels mentioned by brand name
+      if (lower.includes('cazé') || lower.includes('caze')) {
+        return { url: 'https://www.youtube.com/@CazeTV', name: 'CazéTV', isExactChannel: true };
+      }
+      if (lower.includes('canal goat') || (lower.includes('goat') && lower.includes('youtube'))) {
+        return { url: 'https://www.youtube.com/@canalgoatbr', name: 'Canal Goat', isExactChannel: true };
+      }
+      if (lower.includes('jovem pan')) {
+        return { url: 'https://www.youtube.com/@jovempanesportes', name: 'Jovem Pan Esportes', isExactChannel: true };
+      }
+      if (lower.includes('desimpedidos')) {
+        return { url: 'https://www.youtube.com/@desimpedidos', name: 'Desimpedidos', isExactChannel: true };
+      }
+      if (lower.includes('ulisses costa')) {
+        return { url: 'https://www.youtube.com/@UlissesCostaTV', name: 'Ulisses Costa TV', isExactChannel: true };
+      }
+      if (lower.includes('gol brasil')) {
+        return { url: 'https://www.youtube.com/@canalgolbrasil', name: 'Canal Gol Brasil', isExactChannel: true };
+      }
+      if (lower.includes('sportynet') && lower.includes('youtube')) {
+        return { url: 'https://www.youtube.com/@SportyNetBrasil', name: 'SportyNet Brasil', isExactChannel: true };
+      }
+      if (lower.includes('paulistao') || lower.includes('paulistão')) {
+        return { url: 'https://www.youtube.com/@paulistao', name: 'Paulistão', isExactChannel: true };
+      }
+
+      // 3. Generic YouTube mention
+      if (lower.includes('youtube') || lower.includes('you tube')) {
+        const query = confrontation ? (confrontation + ' ao vivo') : 'futebol ao vivo';
+        return {
+          url: 'https://www.youtube.com/results?search_query=' + encodeURIComponent(query),
+          name: 'YouTube',
+          isExactChannel: false
+        };
+      }
+
+      return null;
+    }
+
     let allMatches = [...DEFAULT_MATCHES];
     let currentFilter = 'available';
 
@@ -897,6 +964,7 @@
 
       const filtered = allMatches.filter(m => {
         if (currentFilter === 'available' && !m.available) return false;
+        if (currentFilter === 'youtube' && !extractYouTubeInfo(m.channels, m.confrontation)) return false;
         if (currentFilter === 'brasileirao' && !m.championship.toLowerCase().includes('brasileir')) return false;
         if (currentFilter === 'seriea' && !m.championship.toLowerCase().includes('serie a')) return false;
         if (currentFilter === 'copas' && !m.championship.toLowerCase().includes('copa') && !m.championship.toLowerCase().includes('libertadores')) return false;
@@ -916,6 +984,21 @@
         const awayTeam = parts[1] || '';
         const homeBadge = getTeamBadgeHtml(homeTeam);
         const awayBadge = awayTeam ? getTeamBadgeHtml(awayTeam) : '';
+        const yt = extractYouTubeInfo(m.channels, m.confrontation);
+
+        let actionButtons = '';
+        if (m.available) {
+          actionButtons += `<button class="btn-watch" onclick="playChannel('${m.matchedId}')">Assistir no ${m.matchedName} ▶</button>`;
+        }
+        if (yt) {
+          actionButtons += `<a href="${yt.url}" target="_blank" rel="noopener noreferrer" style="display:inline-flex;align-items:center;gap:6px;background:#dc2626;color:#fff;padding:6px 12px;border-radius:8px;font-size:0.75rem;font-weight:700;text-decoration:none;border:1px solid rgba(255,255,255,0.25);box-shadow:0 1px 3px rgba(0,0,0,0.3);transition:background 0.2s;">
+            <svg style="width:13px;height:13px;fill:currentColor;flex-shrink:0;" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+            <span>Assistir no ${yt.name} ↗</span>
+          </a>`;
+        }
+        if (!m.available && !yt) {
+          actionButtons += `<span style="font-size:0.75rem; color:#64748b;">Streaming / Externa</span>`;
+        }
 
         const card = document.createElement('div');
         card.className = 'match-card';
@@ -940,8 +1023,8 @@
 
             <div class="match-channels"><strong>Canais:</strong> ${m.channels}</div>
           </div>
-          <div style="display:flex; justify-content:space-between; align-items:center; margin-top: 10px;">
-            ${m.available ? `<button class="btn-watch" onclick="playChannel('${m.matchedId}')">Assistir no ${m.matchedName} ▶</button>` : `<span style="font-size:0.75rem; color:#64748b;">Streaming / Externa</span>`}
+          <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px; margin-top: 10px;">
+            ${actionButtons}
           </div>
         `;
         container.appendChild(card);
