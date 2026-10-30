@@ -769,11 +769,13 @@
       }
       const initials = (teamName.slice(0, 3)).toUpperCase();
       if (!slug) {
-        slug = norm.replace(/s+/g, '-');
+        slug = norm.split(' ').join('-');
       }
 
       let template = "https://bolarolando.org/escudos/{slug}.webp";
-      if (template.includes('corinthians.webp')) template = template.replace(/corinthians.webp/g, '{slug}.webp');
+      if (template.includes('corinthians.webp')) {
+        template = template.replace('corinthians.webp', '{slug}.webp');
+      }
 
       const bolarolandoMap = {
         'sao-paulo': 'spfc', 'sao paulo': 'spfc', 'spfc': 'spfc',
@@ -786,11 +788,18 @@
         'fc-barcelona': 'barcelona', 'al-nassr': 'nassr', 'al-kholood': 'kholood'
       };
       const effectiveSlug = bolarolandoMap[slug] || bolarolandoMap[norm] || slug.replace(/-fc$/, '').replace(/-sc$/, '').replace(/-ec$/, '');
-      const url = template.includes('{slug}')
-        ? template.replace(/{slug}/g, effectiveSlug)
-        : (template.includes('{name}') ? template.replace(/{name}/g, effectiveSlug) : (template.replace(//+$/, '') + '/' + effectiveSlug + '.webp'));
+      
+      let url = template;
+      if (url.includes('{slug}')) {
+        url = url.split('{slug}').join(effectiveSlug);
+      } else if (url.includes('{name}')) {
+        url = url.split('{name}').join(effectiveSlug);
+      } else {
+        const base = url.endsWith('/') ? url.slice(0, -1) : url;
+        url = base + '/' + effectiveSlug + '.webp';
+      }
 
-      return '<img src="' + url + '" alt="' + teamName + '" style="width:26px;height:26px;object-fit:contain;flex-shrink:0;" onerror="this.outerHTML=\'<span style=\\\'display:inline-flex;align-items:center;justify-content:center;width:26px;height:26px;border-radius:50%;background:#1e293b;border:1px solid rgba(255,255,255,0.1);color:#fff;font-size:9px;font-weight:900;flex-shrink:0;\\\'>' + initials + '</span>\'">';
+      return '<span style="display:inline-flex;align-items:center;justify-content:center;position:relative;width:26px;height:26px;flex-shrink:0;"><img src="' + url + '" alt="' + teamName + '" style="width:26px;height:26px;object-fit:contain;" onerror="this.style.display=\'none\';if(this.nextElementSibling)this.nextElementSibling.style.display=\'inline-flex\';"><span style="display:none;align-items:center;justify-content:center;width:26px;height:26px;border-radius:50%;background:#1e293b;border:1px solid rgba(255,255,255,0.1);color:#fff;font-size:9px;font-weight:900;">' + initials + '</span></span>';
     }
 
     let allMatches = [...DEFAULT_MATCHES];
@@ -953,16 +962,19 @@
     // Live update check (background non-blocking, preserves DEFAULT_MATCHES)
     async function checkLiveUpdates(isManual = false) {
       const statusBadge = document.getElementById('status-badge');
+      const curDate = getDeviceDateLabel();
+      const dateLabelEl = document.getElementById('date-label');
+      if (dateLabelEl) dateLabelEl.textContent = 'Fonte Mantos do Futebol · ' + curDate;
       if (isManual && statusBadge) statusBadge.textContent = 'Verificando atualizações...';
 
       try {
         // 1. Try local backend
         try {
-          const res = await fetch('/api/jogos-hoje');
+          const res = await fetch('/api/jogos-hoje?refresh=' + (isManual ? 'true' : 'false') + '&clientDate=' + encodeURIComponent(curDate) + '&_t=' + Date.now());
           if (res.ok) {
             const data = await res.json();
             if (data.matches && data.matches.length > 0) {
-              document.getElementById('date-label').textContent = 'Fonte Mantos do Futebol · ' + (data.dateLabel || DEFAULT_DATE);
+              if (dateLabelEl) dateLabelEl.textContent = 'Fonte Mantos do Futebol · ' + (data.dateLabel || curDate);
               allMatches = data.matches.map(m => ({
                 time: m.time,
                 confrontation: m.confrontation,
@@ -980,7 +992,7 @@
         } catch(e) {}
 
         // 2. Try proxy for GitHub Pages
-        const proxyUrl = 'https://api.allorigins.win/raw?url=' + encodeURIComponent('https://mantosdofutebol.com.br/guia-de-jogos-tv-hoje-ao-vivo/');
+        const proxyUrl = 'https://api.allorigins.win/raw?url=' + encodeURIComponent('https://mantosdofutebol.com.br/guia-de-jogos-tv-hoje-ao-vivo/') + '&_t=' + Date.now();
         const proxyRes = await fetch(proxyUrl);
         if (proxyRes.ok) {
           const html = await proxyRes.text();
@@ -1001,7 +1013,9 @@
     }
 
     // INITIALIZE: Render immediately from DEFAULT_MATCHES!
-    document.getElementById('date-label').textContent = 'Fonte Mantos do Futebol · ' + DEFAULT_DATE;
+    const initDate = getDeviceDateLabel() || DEFAULT_DATE;
+    const initialDateLabelEl = document.getElementById('date-label');
+    if (initialDateLabelEl) initialDateLabelEl.textContent = 'Fonte Mantos do Futebol · ' + initDate;
     renderMatches();
     // Then attempt background refresh
     setTimeout(() => checkLiveUpdates(false), 800);
