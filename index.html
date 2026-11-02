@@ -164,6 +164,26 @@
       color: #fff;
       border-color: #dc2626;
     }
+    .date-btn {
+      background: transparent;
+      border: 0;
+      color: #94a3b8;
+      font-size: 0.75rem;
+      font-weight: 700;
+      padding: 6px 12px;
+      border-radius: 7px;
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+    .date-btn:hover {
+      color: #fff;
+      background: rgba(255,255,255,0.08);
+    }
+    .date-btn.active {
+      background: #dc2626;
+      color: #fff;
+      box-shadow: 0 1px 4px rgba(220,38,38,0.4);
+    }
     .search-input {
       background: #0f1420;
       border: 1px solid rgba(255,255,255,0.1);
@@ -338,17 +358,24 @@
       <div class="banner">
         <div>
           <div class="banner-title">
-            <span>Guia de Jogos na TV Hoje</span>
+            <span>Guia de Jogos na TV</span>
             <span style="font-size: 0.7rem; background: #dc2626; color: #fff; padding: 2px 8px; border-radius: 4px;">AO VIVO</span>
           </div>
           <div style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap; margin-top: 4px;">
             <div id="date-label" class="banner-sub" style="margin-top: 0;">Fonte 365Scores · Segunda – 02/11</div>
-            <span id="status-badge" style="font-size: 0.7rem; background: rgba(16, 185, 129, 0.15); color: #34d399; border: 1px solid rgba(16, 185, 129, 0.3); padding: 2px 8px; border-radius: 9999px; font-weight: 600;">● Grade do dia ativa (22 jogos)</span>
+            <span id="status-badge" style="font-size: 0.7rem; background: rgba(16, 185, 129, 0.15); color: #34d399; border: 1px solid rgba(16, 185, 129, 0.3); padding: 2px 8px; border-radius: 9999px; font-weight: 600;">● Grade ativa</span>
           </div>
         </div>
-        <button onclick="checkLiveUpdates(true)" style="background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15); color: #fff; padding: 8px 14px; border-radius: 8px; font-weight: 700; cursor: pointer;">
-          Atualizar Grade ⟳
-        </button>
+        <div style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
+          <div style="display: inline-flex; background: rgba(0,0,0,0.4); border: 1px solid rgba(255,255,255,0.1); border-radius: 9px; padding: 3px; gap: 3px;">
+            <button class="date-btn" id="date-btn-yesterday" onclick="changeDate('yesterday')">Ontem</button>
+            <button class="date-btn active" id="date-btn-today" onclick="changeDate('today')">Hoje</button>
+            <button class="date-btn" id="date-btn-tomorrow" onclick="changeDate('tomorrow')">Amanhã</button>
+          </div>
+          <button onclick="checkLiveUpdates(true)" style="background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15); color: #fff; padding: 7px 12px; border-radius: 8px; font-weight: 700; cursor: pointer; font-size: 0.8rem; display: inline-flex; align-items: center; gap: 5px;">
+            <span>Atualizar</span> ⟳
+          </button>
+        </div>
       </div>
 
       <!-- Quick channels bar -->
@@ -364,9 +391,9 @@
       <!-- Filter Bar -->
       <div class="filter-bar">
         <div class="filter-tabs">
-          <button class="filter-btn active" onclick="setFilter('available', this)">Canais do Portal</button>
+          <button class="filter-btn active" onclick="setFilter('all', this)">Todos os Jogos</button>
+          <button class="filter-btn" onclick="setFilter('available', this)">Canais do Portal</button>
           <button class="filter-btn" onclick="setFilter('youtube', this)">No YouTube</button>
-          <button class="filter-btn" onclick="setFilter('all', this)">Todos os Jogos</button>
           <button class="filter-btn" onclick="setFilter('brasileirao', this)">Brasileirão</button>
           <button class="filter-btn" onclick="setFilter('seriea', this)">Serie A</button>
           <button class="filter-btn" onclick="setFilter('copas', this)">Copas</button>
@@ -875,7 +902,7 @@
     }
 
     let allMatches = [...DEFAULT_MATCHES];
-    let currentFilter = 'available';
+    let currentFilter = 'all';
 
     function switchTab(tab) {
       if (tab === 'guide') {
@@ -1047,22 +1074,79 @@
       renderMatches();
     }
 
-    // Live update check (background non-blocking, preserves DEFAULT_MATCHES)
-    async function checkLiveUpdates(isManual = false) {
+    // Channel matcher helper for client-side / static hosting (GitHub Pages)
+    function matchChannelFromText(text) {
+      if (!text) return null;
+      const lower = text.toLowerCase();
+      if (lower.includes('premiere 2')) return { id: 'premiere-2', name: 'PREMIERE 2' };
+      if (lower.includes('premiere 3')) return { id: 'premiere-3', name: 'PREMIERE 3' };
+      if (lower.includes('premiere 4')) return { id: 'premiere-4', name: 'PREMIERE 4' };
+      if (lower.includes('premiere 5')) return { id: 'premiere-5', name: 'PREMIERE 5' };
+      if (lower.includes('premiere 6')) return { id: 'premiere-6', name: 'PREMIERE 6' };
+      if (lower.includes('premiere 7')) return { id: 'premiere-7', name: 'PREMIERE 7' };
+      if (lower.includes('premiere')) return { id: 'premiere-c', name: 'PREMIERE C' };
+      if (lower.includes('sportv 2')) return { id: 'sportv-2', name: 'SPORTV 2' };
+      if (lower.includes('sportv 3')) return { id: 'sportv-3', name: 'SPORTV 3' };
+      if (lower.includes('sportv 4')) return { id: 'sportv-4', name: 'SPORTV 4' };
+      if (lower.includes('sportv')) return { id: 'sportv-1', name: 'SPORTV 1' };
+      if (lower.includes('espn 2')) return { id: 'espn-2', name: 'ESPN 2' };
+      if (lower.includes('espn 3')) return { id: 'espn-3', name: 'ESPN 3' };
+      if (lower.includes('espn 4')) return { id: 'espn-4', name: 'ESPN 4' };
+      if (lower.includes('espn 5')) return { id: 'espn-5', name: 'ESPN 5' };
+      if (lower.includes('espn 6')) return { id: 'espn-6', name: 'ESPN 6' };
+      if (lower.includes('espn')) return { id: 'espn-1', name: 'ESPN 1' };
+      if (lower.includes('sportynet 2')) return { id: 'sportynet-2', name: 'SPORTYNET 2' };
+      if (lower.includes('sportynet 3')) return { id: 'sportynet-3', name: 'SPORTYNET 3' };
+      if (lower.includes('sportynet')) return { id: 'sportynet-1', name: 'SPORTYNET 1' };
+      if (lower.includes('bandsports')) return { id: 'bandsports', name: 'BANDSPORTS' };
+      if (lower.includes('record')) return { id: 'record', name: 'RECORD' };
+      if (lower.includes('sbt')) return { id: 'sbt', name: 'SBT' };
+      if (lower.includes('caze') || lower.includes('cazé')) return { id: 'cazetv-1', name: 'CAZÉTV 1' };
+      if (lower.includes('disney')) return { id: 'disney-1', name: 'DISNEY+' };
+      if (lower.includes('max') || lower.includes('hbo')) return { id: 'max-1', name: 'HBO MAX' };
+      if (lower.includes('paramount')) return { id: 'paramount-1', name: 'PARAMOUNT+' };
+      if (lower.includes('prime video')) return { id: 'primevideo-1', name: 'PRIME VIDEO' };
+      return null;
+    }
+
+    let currentDateMode = 'today';
+
+    // Interactive date switcher for Ontem, Hoje e Amanhã (works on server & static GitHub Pages)
+    async function changeDate(mode) {
+      currentDateMode = mode;
+      document.querySelectorAll('.date-btn').forEach(b => b.classList.remove('active'));
+      const activeBtn = document.getElementById('date-btn-' + mode);
+      if (activeBtn) activeBtn.classList.add('active');
+
       const statusBadge = document.getElementById('status-badge');
-      const curDate = getDeviceDateLabel();
       const dateLabelEl = document.getElementById('date-label');
-      if (dateLabelEl) dateLabelEl.textContent = 'Fonte Mantos do Futebol · ' + curDate;
-      if (isManual && statusBadge) statusBadge.textContent = 'Verificando atualizações...';
+      if (statusBadge) statusBadge.textContent = 'Carregando jogos...';
+
+      // Compute date label & DD/MM/YYYY
+      const now = new Date();
+      let targetDate = new Date();
+      if (mode === 'yesterday') {
+        targetDate = new Date(now.getTime() - 24 * 60 * 60 * 1000);
+      } else if (mode === 'tomorrow') {
+        targetDate = new Date(now.getTime() + 24 * 60 * 60 * 1000);
+      }
+      const days = ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado'];
+      const dayName = days[targetDate.getDay()];
+      const d = String(targetDate.getDate()).padStart(2, '0');
+      const m = String(targetDate.getMonth() + 1).padStart(2, '0');
+      const y = targetDate.getFullYear();
+      const dateStr = d + '/' + m + '/' + y;
+      const fallbackDateLabel = dayName + ' – ' + d + '/' + m;
+      if (dateLabelEl) dateLabelEl.textContent = 'Fonte 365Scores · ' + fallbackDateLabel;
 
       try {
-        // 1. Try local backend
+        // 1. Try local full-stack server if running
         try {
-          const res = await fetch('/api/jogos-hoje?refresh=' + (isManual ? 'true' : 'false') + '&clientDate=' + encodeURIComponent(curDate) + '&_t=' + Date.now());
+          const res = await fetch('/api/jogos-hoje?date=' + mode + '&_t=' + Date.now());
           if (res.ok) {
             const data = await res.json();
             if (data.matches && data.matches.length > 0) {
-              if (dateLabelEl) dateLabelEl.textContent = 'Fonte 365Scores · ' + (data.dateLabel || curDate);
+              if (dateLabelEl) dateLabelEl.textContent = 'Fonte 365Scores · ' + (data.dateLabel || fallbackDateLabel);
               allMatches = data.matches.map(m => ({
                 time: m.time,
                 confrontation: m.confrontation,
@@ -1075,61 +1159,79 @@
                 available: m.isAvailableInApp
               }));
               renderMatches();
-              if (statusBadge) statusBadge.textContent = '● Jogos atualizados via 365Scores';
+              if (statusBadge) statusBadge.textContent = '● ' + allMatches.length + ' jogos carregados';
               return;
             }
           }
-        } catch(e) {}
+        } catch (e) {
+          // Ignore and proceed to direct 365Scores fetch
+        }
 
-        // 2. Direct 365Scores API (CORS friendly, works directly on GitHub Pages!)
-        try {
-          const nowObj = new Date();
-          const d = String(nowObj.getDate()).padStart(2, '0');
-          const m = String(nowObj.getMonth() + 1).padStart(2, '0');
-          const y = nowObj.getFullYear();
-          const dateStr = d + '/' + m + '/' + y;
-          const scoresRes = await fetch('https://webws.365scores.com/web/games/allscores/?appTypeId=5&langId=31&timezoneName=America/Sao_Paulo&userCountryId=21&sports=1&startDate=' + dateStr + '&endDate=' + dateStr);
-          if (scoresRes.ok) {
-            const data = await scoresRes.json();
-            const competitorsMap = new Map((data.competitors || []).map(c => [c.id, c]));
-            const competitionsMap = new Map((data.competitions || []).map(c => [c.id, c]));
-            const tvGames = (data.games || []).filter(g => g.hasTVNetworks);
-            if (tvGames.length > 0) {
-              allMatches = tvGames.map(g => {
-                const home = competitorsMap.get(g.homeCompetitor?.id) || {};
-                const away = competitorsMap.get(g.awayCompetitor?.id) || {};
-                const comp = competitionsMap.get(g.competitionId) || {};
-                return {
-                  time: g.startTime ? g.startTime.slice(11, 16) : 'A definir',
-                  confrontation: (home.name || 'Mandante') + ' x ' + (away.name || 'Visitante'),
-                  championship: comp.name || g.competitionDisplayName || 'Futebol',
-                  channels: '365Scores Onde Assistir',
-                  homeLogo: home.id ? 'https://imagecache.365scores.com/image/upload/f_png,c_limit,q_auto:eco,dpr_2/Competitors/' + home.id : null,
-                  awayLogo: away.id ? 'https://imagecache.365scores.com/image/upload/f_png,c_limit,q_auto:eco,dpr_2/Competitors/' + away.id : null,
-                  matchedId: null,
-                  matchedName: null,
-                  available: false
-                };
-              });
-              renderMatches();
-              if (statusBadge) statusBadge.textContent = '● Jogos atualizados via 365Scores (GitHub)';
-              return;
-            }
+        // 2. Direct 365Scores API (CORS friendly, works natively on GitHub Pages)
+        const scoresUrl = 'https://webws.365scores.com/web/games/allscores/?appTypeId=5&langId=31&timezoneName=America/Sao_Paulo&userCountryId=21&sports=1&startDate=' + encodeURIComponent(dateStr) + '&endDate=' + encodeURIComponent(dateStr);
+        const scoresRes = await fetch(scoresUrl);
+        if (scoresRes.ok) {
+          const data = await scoresRes.json();
+          const competitorsMap = new Map((data.competitors || []).map(c => [c.id, c]));
+          const competitionsMap = new Map((data.competitions || []).map(c => [c.id, c]));
+          const tvGames = (data.games || []).filter(g => g.hasTVNetworks);
+          const rawGames = tvGames.length > 0 ? tvGames : (data.games || []);
+
+          if (rawGames.length > 0) {
+            allMatches = rawGames.map(g => {
+              const home = competitorsMap.get(g.homeCompetitor ? g.homeCompetitor.id : null) || {};
+              const away = competitorsMap.get(g.awayCompetitor ? g.awayCompetitor.id : null) || {};
+              const comp = competitionsMap.get(g.competitionId) || {};
+              let timeStr = 'A definir';
+              if (g.startTime) {
+                try {
+                  const dt = new Date(g.startTime);
+                  timeStr = dt.toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit', timeZone: 'America/Sao_Paulo' });
+                } catch (e) {
+                  timeStr = g.startTime.slice(11, 16);
+                }
+              }
+              const conf = (home.name || 'Mandante') + ' x ' + (away.name || 'Visitante');
+              const chMatch = matchChannelFromText(comp.name || '') || null;
+              return {
+                time: timeStr,
+                confrontation: conf,
+                championship: comp.name || g.competitionDisplayName || 'Futebol',
+                channels: g.hasTVNetworks ? 'Transmissão confirmada na TV' : 'Onde Assistir 365Scores',
+                homeLogo: home.id ? 'https://imagecache.365scores.com/image/upload/f_png,c_limit,q_auto:eco,dpr_2/Competitors/' + home.id : null,
+                awayLogo: away.id ? 'https://imagecache.365scores.com/image/upload/f_png,c_limit,q_auto:eco,dpr_2/Competitors/' + away.id : null,
+                matchedId: chMatch ? chMatch.id : null,
+                matchedName: chMatch ? chMatch.name : null,
+                available: Boolean(chMatch)
+              };
+            });
+            renderMatches();
+            if (statusBadge) statusBadge.textContent = '● ' + allMatches.length + ' jogos carregados via 365Scores';
+            return;
           }
-        } catch(e) {}
-        console.log('Usando grade em cache offline:', err);
+        }
+      } catch (err) {
+        console.warn('Erro ao atualizar data:', err);
       }
 
-      // If background fetch failed, keep allMatches intact!
-      if (statusBadge) statusBadge.textContent = '● Grade do dia ativa (' + allMatches.length + ' jogos)';
+      // If fetch fails or runs offline, ensure current matches stay rendered
+      renderMatches();
+      if (statusBadge) statusBadge.textContent = '● Grade ativa (' + allMatches.length + ' jogos)';
     }
 
-    // INITIALIZE: Render immediately from DEFAULT_MATCHES!
+    async function checkLiveUpdates(isManual = false) {
+      const statusBadge = document.getElementById('status-badge');
+      if (isManual && statusBadge) statusBadge.textContent = 'Verificando atualizações...';
+      await changeDate(currentDateMode);
+    }
+
+    // INITIALIZE: Render immediately from DEFAULT_MATCHES with zero delay!
     const initDate = getDeviceDateLabel() || DEFAULT_DATE;
     const initialDateLabelEl = document.getElementById('date-label');
-    if (initialDateLabelEl) initialDateLabelEl.textContent = 'Fonte Mantos do Futebol · ' + initDate;
+    if (initialDateLabelEl) initialDateLabelEl.textContent = 'Fonte 365Scores · ' + initDate;
     renderMatches();
-    // Then attempt background refresh
+
+    // Then perform non-blocking background refresh
     setTimeout(() => checkLiveUpdates(false), 800);
   </script>
 </body>
