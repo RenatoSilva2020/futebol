@@ -633,7 +633,7 @@
         <span>📅 Jogos do Dia</span>
       </button>
       <button id="tab-btn-video" class="tab-btn" onclick="switchTab('video')">
-        <span>📺 Player & Canais (38)</span>
+        <span>📺 Player & Canais (41)</span>
       </button>
     </div>
 
@@ -643,7 +643,7 @@
         <span class="hidden-mobile">Tela Cheia</span>
       </button>
 
-      <a id="btn-top-server" href="https://redecanais.by/player3/ch.php?canal=premiereclubes" target="_blank" rel="noopener noreferrer" class="btn-server-top">
+      <a id="btn-top-server" href="https://2910.playerembcanais.com/premiereclubes" target="_blank" rel="noopener noreferrer" class="btn-server-top">
         <span>Abrir Servidor ↗</span>
       </a>
     </div>
@@ -659,7 +659,7 @@
             <span class="banner-badge-live">AO VIVO</span>
           </div>
           <div style="display: flex; align-items: center; gap: 10px; flex-wrap: wrap; margin-top: 6px;">
-            <div id="date-label" class="banner-sub" style="margin-top: 0;">Fonte 365Scores · Quarta – 04/11</div>
+            <div id="date-label" class="banner-sub" style="margin-top: 0;">Fonte 365Scores · Quinta – 05/11</div>
             <span id="status-badge" style="font-size: 0.75rem; background: rgba(16, 185, 129, 0.18); color: #34d399; border: 1px solid rgba(16, 185, 129, 0.35); padding: 3px 10px; border-radius: 9999px; font-weight: 700;">
               ● Grade ativa
             </span>
@@ -685,6 +685,7 @@
         <button class="channel-chip" onclick="playChannel('premiere-c')">Premiere (7 canais)</button>
         <button class="channel-chip" onclick="playChannel('sportv-1')">SporTV (4 canais)</button>
         <button class="channel-chip" onclick="playChannel('espn-1')">ESPN (6 canais)</button>
+        <button class="channel-chip" onclick="playChannel('globo-sp')">Globo (SP/RJ/MG)</button>
         <button class="channel-chip" onclick="playChannel('cazetv-1')">CazéTV (3 canais)</button>
         <button class="channel-chip" onclick="playChannel('sportynet-1')">Sportynet (3 canais)</button>
         <button class="channel-chip" onclick="playChannel('bandsports')">BandSports</button>
@@ -716,13 +717,13 @@
         <!-- Player Column -->
         <div>
           <div class="player-wrapper">
-            <iframe id="main-player" src="https://redecanais.by/player3/ch.php?canal=premiereclubes" allowfullscreen allow="autoplay; fullscreen; encrypted-media; picture-in-picture"></iframe>
+            <iframe id="main-player" src="https://2910.playerembcanais.com/premiereclubes" allowfullscreen allow="autoplay; fullscreen; encrypted-media; picture-in-picture"></iframe>
           </div>
 
           <div class="player-meta">
             <div>
               <div id="player-title" style="font-size: 1.4rem; font-weight: 900; color: #fff;">PREMIERE C</div>
-              <div id="player-desc" style="font-size: 0.88rem; color: #94a3b8; margin-top: 3px;">Premiere · Transmissão oficial via player3 redecanais</div>
+              <div id="player-desc" style="font-size: 0.88rem; color: #94a3b8; margin-top: 3px;">Premiere · Transmissão oficial ao vivo</div>
             </div>
 
             <div style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
@@ -732,7 +733,7 @@
               <button onclick="toggleFullScreen()" class="btn-tune-fallback" title="Tela Cheia">
                 <span>Tela Cheia ⛶</span>
               </button>
-              <a id="btn-player-direct" href="https://redecanais.by/player3/ch.php?canal=premiereclubes" target="_blank" rel="noopener noreferrer" class="btn-watch">
+              <a id="btn-player-direct" href="https://2910.playerembcanais.com/premiereclubes" target="_blank" rel="noopener noreferrer" class="btn-watch">
                 <span>Abrir Servidor ↗</span>
               </a>
             </div>
@@ -742,7 +743,7 @@
         <!-- Sidebar Playlist Column -->
         <div class="playlist-card">
           <div class="playlist-header">
-            <div style="font-size: 1rem; font-weight: 900; color: #fff;">Lista de Canais (38)</div>
+            <div style="font-size: 1rem; font-weight: 900; color: #fff;">Lista de Canais (41)</div>
             <span style="font-size: 0.72rem; color: #10b981; font-weight: 800; background: rgba(16,185,129,0.15); padding: 2px 8px; border-radius: 6px;">● ONLINE</span>
           </div>
 
@@ -762,67 +763,67 @@
   </footer>
 
   <script>
-    // 38 PRE-CONFIGURED CHANNELS WITH TESTED WORKING EMBED URLS
+    // 41 PRE-CONFIGURED CHANNELS WITH TESTED WORKING EMBED URLS
     const channels = [
   {
     "id": "premiere-c",
     "name": "PREMIERE C",
     "net": "Premiere",
-    "url": "https://redecanais.by/player3/ch.php?canal=premiereclubes"
+    "url": "https://2910.playerembcanais.com/premiereclubes"
   },
   {
     "id": "premiere-2",
     "name": "PREMIERE 2",
     "net": "Premiere",
-    "url": "https://redecanais.by/player3/ch.php?canal=premiere2"
+    "url": "https://2910.playerembcanais.com/premiere2"
   },
   {
     "id": "premiere-3",
     "name": "PREMIERE 3",
     "net": "Premiere",
-    "url": "https://redecanais.by/player3/ch.php?canal=premiere3"
+    "url": "https://2910.playerembcanais.com/premiere3"
   },
   {
     "id": "premiere-4",
     "name": "PREMIERE 4",
     "net": "Premiere",
-    "url": "https://redecanais.by/player3/ch.php?canal=premiere4"
+    "url": "https://2910.playerembcanais.com/premiere4"
   },
   {
     "id": "premiere-5",
     "name": "PREMIERE 5",
     "net": "Premiere",
-    "url": "https://redecanais.by/player3/ch.php?canal=premiere5"
+    "url": "https://2910.playerembcanais.com/premiere5"
   },
   {
     "id": "premiere-6",
     "name": "PREMIERE 6",
     "net": "Premiere",
-    "url": "https://redecanais.by/player3/ch.php?canal=premiere6"
+    "url": "https://2910.playerembcanais.com/premiere6"
   },
   {
     "id": "premiere-7",
     "name": "PREMIERE 7",
     "net": "Premiere",
-    "url": "https://redecanais.by/player3/ch.php?canal=premiere7"
+    "url": "https://2910.playerembcanais.com/premiere7"
   },
   {
     "id": "sportv-1",
     "name": "SPORTV 1",
     "net": "SporTV",
-    "url": "https://redecanais.by/player3/ch.php?canal=sportv1"
+    "url": "https://2910.playerembcanais.com/sportv1"
   },
   {
     "id": "sportv-2",
     "name": "SPORTV 2",
     "net": "SporTV",
-    "url": "https://redecanais.by/player3/ch.php?canal=sportv2"
+    "url": "https://2910.playerembcanais.com/sportv2"
   },
   {
     "id": "sportv-3",
     "name": "SPORTV 3",
     "net": "SporTV",
-    "url": "https://redecanais.by/player3/ch.php?canal=sportv3"
+    "url": "https://2910.playerembcanais.com/sportv3"
   },
   {
     "id": "sportv-4",
@@ -834,73 +835,91 @@
     "id": "sportynet-1",
     "name": "SPORTYNET 1",
     "net": "Sportynet",
-    "url": "https://redecanais.by/player3/ch.php?canal=sportynet1"
+    "url": "https://2910.playerembcanais.com/sportynet1"
   },
   {
     "id": "sportynet-2",
     "name": "SPORTYNET 2",
     "net": "Sportynet",
-    "url": "https://redecanais.by/player3/ch.php?canal=sportynet2"
+    "url": "https://2910.playerembcanais.com/sportynet2"
   },
   {
     "id": "sportynet-3",
     "name": "SPORTYNET 3",
     "net": "Sportynet",
-    "url": "https://redecanais.by/player3/ch.php?canal=sportynet3"
+    "url": "https://2910.playerembcanais.com/sportynet3"
   },
   {
     "id": "espn-1",
     "name": "ESPN 1",
     "net": "ESPN",
-    "url": "https://redecanais.by/player3/ch.php?canal=espn"
+    "url": "https://2910.playerembcanais.com/espn"
   },
   {
     "id": "espn-2",
     "name": "ESPN 2",
     "net": "ESPN",
-    "url": "https://redecanais.by/player3/ch.php?canal=espn2"
+    "url": "https://2910.playerembcanais.com/espn2"
   },
   {
     "id": "espn-3",
     "name": "ESPN 3",
     "net": "ESPN",
-    "url": "https://redecanais.by/player3/ch.php?canal=espn3"
+    "url": "https://2910.playerembcanais.com/espn3"
   },
   {
     "id": "espn-4",
     "name": "ESPN 4",
     "net": "ESPN",
-    "url": "https://redecanais.by/player3/ch.php?canal=espn4"
+    "url": "https://2910.playerembcanais.com/espn4"
   },
   {
     "id": "espn-5",
     "name": "ESPN 5",
     "net": "ESPN",
-    "url": "https://redecanais.by/player3/ch.php?canal=espn5"
+    "url": "https://2910.playerembcanais.com/espn5"
   },
   {
     "id": "espn-6",
     "name": "ESPN 6",
     "net": "ESPN",
-    "url": "https://redecanais.by/player3/ch.php?canal=espn6"
+    "url": "https://2910.playerembcanais.com/espn6"
   },
   {
     "id": "bandsports",
     "name": "BANDSPORTS",
     "net": "BandSports",
-    "url": "https://redecanais.by/player3/ch.php?canal=bandsports"
+    "url": "https://2910.playerembcanais.com/bandsports"
   },
   {
     "id": "record",
     "name": "RECORD",
     "net": "Record",
-    "url": "https://redecanais.by/player3/ch.php?canal=record"
+    "url": "https://ww0.embedtv.cc/record"
   },
   {
     "id": "sbt",
     "name": "SBT",
     "net": "SBT",
-    "url": "https://redecanais.by/player3/ch.php?canal=sbt"
+    "url": "https://ww0.embedtv.cc/sbt"
+  },
+  {
+    "id": "globo-mg",
+    "name": "GLOBO MG",
+    "net": "Globo",
+    "url": "https://ww0.embedtv.cc/globomg"
+  },
+  {
+    "id": "globo-rj",
+    "name": "GLOBO RJ",
+    "net": "Globo",
+    "url": "https://ww0.embedtv.cc/globorj"
+  },
+  {
+    "id": "globo-sp",
+    "name": "GLOBO SP",
+    "net": "Globo",
+    "url": "https://ww0.embedtv.cc/globosp"
   },
   {
     "id": "cazetv-1",
@@ -958,13 +977,13 @@
   },
   {
     "id": "paramount-1",
-    "name": "PARAMOUNT+ 1",
+    "name": "PARAMOUT+ 1",
     "net": "Paramount+",
     "url": "https://ww0.embedtv.cc/paramountplus"
   },
   {
     "id": "paramount-2",
-    "name": "PARAMOUNT+ 2",
+    "name": "PARAMOUT+ 2",
     "net": "Paramount+",
     "url": "https://ww0.embedtv.cc/paramountplus2"
   },
@@ -1003,10 +1022,10 @@
       return `${dayName} – ${d}/${m}`;
     }
 
-    const DEFAULT_DATE = "Quarta – 04/11";
+    const DEFAULT_DATE = "Quinta – 05/11";
 
     // Baked-in complete schedule with real TV assignments and shields
-    const DEFAULT_MATCHES = [{"time":"07:00","confrontation":"Pohang Steelers x Gamba Osaka","championship":"Liga dos Campeões da Ásia","channels":"Disney+","homeLogo":"https://imagecache.365scores.com/image/upload/f_png,c_limit,q_auto:eco,dpr_2/Competitors/9822","awayLogo":"https://imagecache.365scores.com/image/upload/f_png,c_limit,q_auto:eco,dpr_2/Competitors/2150","matchedId":"disney-1","matchedName":"DISNEY+ 1","available":true},{"time":"09:15","confrontation":"Buriram United x Kashima Antlers","championship":"Liga dos Campeões da Ásia","channels":"Disney+","homeLogo":"https://imagecache.365scores.com/image/upload/f_png,c_limit,q_auto:eco,dpr_2/Competitors/7747","awayLogo":"https://imagecache.365scores.com/image/upload/f_png,c_limit,q_auto:eco,dpr_2/Competitors/2146","matchedId":"disney-1","matchedName":"DISNEY+ 1","available":true},{"time":"12:30","confrontation":"Rennes x Olympiacos","championship":"Liga Europa","channels":"CazéTV","homeLogo":"https://imagecache.365scores.com/image/upload/f_png,c_limit,q_auto:eco,dpr_2/Competitors/477","awayLogo":"https://imagecache.365scores.com/image/upload/f_png,c_limit,q_auto:eco,dpr_2/Competitors/1023","matchedId":"cazetv-1","matchedName":"CAZETV 1","available":true},{"time":"13:00","confrontation":"Al-Wahda x Al Khalidiyah","championship":"Copa da AFC","channels":"Disney+","homeLogo":"https://imagecache.365scores.com/image/upload/f_png,c_limit,q_auto:eco,dpr_2/Competitors/8350","awayLogo":"https://imagecache.365scores.com/image/upload/f_png,c_limit,q_auto:eco,dpr_2/Competitors/68794","matchedId":"disney-1","matchedName":"DISNEY+ 1","available":true},{"time":"14:45","confrontation":"Fenerbahçe SK x Liverpool","championship":"Liga dos Campeões","channels":"Space, HBO Max","homeLogo":"https://imagecache.365scores.com/image/upload/f_png,c_limit,q_auto:eco,dpr_2/Competitors/946","awayLogo":"https://imagecache.365scores.com/image/upload/f_png,c_limit,q_auto:eco,dpr_2/Competitors/108","matchedId":"max-1","matchedName":"HBO MAX 1","available":true},{"time":"14:45","confrontation":"AEK Athens x Real Madrid","championship":"Liga dos Campeões","channels":"TNT Sports, HBO Max","homeLogo":"https://imagecache.365scores.com/image/upload/f_png,c_limit,q_auto:eco,dpr_2/Competitors/1024","awayLogo":"https://imagecache.365scores.com/image/upload/f_png,c_limit,q_auto:eco,dpr_2/Competitors/131","matchedId":"max-1","matchedName":"HBO MAX 1","available":true},{"time":"15:00","confrontation":"Atlético-MG Júnior x Santa Cruz Júnior","championship":"Copa do Brasil Sub-20","channels":" SporTV","homeLogo":"https://imagecache.365scores.com/image/upload/f_png,c_limit,q_auto:eco,dpr_2/Competitors/28843","awayLogo":"https://imagecache.365scores.com/image/upload/f_png,c_limit,q_auto:eco,dpr_2/Competitors/28817","matchedId":"sportv-1","matchedName":"SPORTV 1","available":true},{"time":"17:00","confrontation":"Bristol City x Wolves","championship":"2ª Divisão Inglesa","channels":"ESPN 4, Disney+","homeLogo":"https://imagecache.365scores.com/image/upload/f_png,c_limit,q_auto:eco,dpr_2/Competitors/6","awayLogo":"https://imagecache.365scores.com/image/upload/f_png,c_limit,q_auto:eco,dpr_2/Competitors/15","matchedId":"espn-4","matchedName":"ESPN 4","available":true},{"time":"17:00","confrontation":"FC Porto x Napoli","championship":"Liga dos Campeões","channels":"HBO Max","homeLogo":"https://imagecache.365scores.com/image/upload/f_png,c_limit,q_auto:eco,dpr_2/Competitors/887","awayLogo":"https://imagecache.365scores.com/image/upload/f_png,c_limit,q_auto:eco,dpr_2/Competitors/234","matchedId":"max-1","matchedName":"HBO MAX 1","available":true},{"time":"17:00","confrontation":"Viking x Sabah","championship":"Liga dos Campeões","channels":"HBO Max","homeLogo":"https://imagecache.365scores.com/image/upload/f_png,c_limit,q_auto:eco,dpr_2/Competitors/1980","awayLogo":"https://imagecache.365scores.com/image/upload/f_png,c_limit,q_auto:eco,dpr_2/Competitors/50201","matchedId":"max-1","matchedName":"HBO MAX 1","available":true},{"time":"17:00","confrontation":"PSV Eindhoven x Club Brugge","championship":"Liga dos Campeões","channels":"HBO Max","homeLogo":"https://imagecache.365scores.com/image/upload/f_png,c_limit,q_auto:eco,dpr_2/Competitors/725","awayLogo":"https://imagecache.365scores.com/image/upload/f_png,c_limit,q_auto:eco,dpr_2/Competitors/1169","matchedId":"max-1","matchedName":"HBO MAX 1","available":true},{"time":"17:00","confrontation":"Slavia Praha x Arsenal","championship":"Liga dos Campeões","channels":"TNT Sports, HBO Max","homeLogo":"https://imagecache.365scores.com/image/upload/f_png,c_limit,q_auto:eco,dpr_2/Competitors/1789","awayLogo":"https://imagecache.365scores.com/image/upload/f_png,c_limit,q_auto:eco,dpr_2/Competitors/104","matchedId":"max-1","matchedName":"HBO MAX 1","available":true},{"time":"17:00","confrontation":"Borussia Dortmund x Real Betis","championship":"Liga dos Campeões","channels":"Space, HBO Max, Youtube TNT Sports Brasil","homeLogo":"https://imagecache.365scores.com/image/upload/f_png,c_limit,q_auto:eco,dpr_2/Competitors/341","awayLogo":"https://imagecache.365scores.com/image/upload/f_png,c_limit,q_auto:eco,dpr_2/Competitors/146","matchedId":"max-1","matchedName":"HBO MAX 1","available":true},{"time":"17:00","confrontation":"Lens x Como","championship":"Liga dos Campeões","channels":"HBO Max","homeLogo":"https://imagecache.365scores.com/image/upload/f_png,c_limit,q_auto:eco,dpr_2/Competitors/481","awayLogo":"https://imagecache.365scores.com/image/upload/f_png,c_limit,q_auto:eco,dpr_2/Competitors/6117","matchedId":"max-1","matchedName":"HBO MAX 1","available":true},{"time":"17:00","confrontation":"RB Leipzig x Manchester City","championship":"Liga dos Campeões","channels":"HBO Max","homeLogo":"https://imagecache.365scores.com/image/upload/f_png,c_limit,q_auto:eco,dpr_2/Competitors/7171","awayLogo":"https://imagecache.365scores.com/image/upload/f_png,c_limit,q_auto:eco,dpr_2/Competitors/110","matchedId":"max-1","matchedName":"HBO MAX 1","available":true},{"time":"19:30","confrontation":"Athletico-PR x Vasco da Gama","championship":"Brasileirão - Série A","channels":"Premiere, Record TV, CazéTV","homeLogo":"https://imagecache.365scores.com/image/upload/f_png,c_limit,q_auto:eco,dpr_2/Competitors/1210","awayLogo":"https://imagecache.365scores.com/image/upload/f_png,c_limit,q_auto:eco,dpr_2/Competitors/1227","matchedId":"premiere-c","matchedName":"PREMIERE","available":true},{"time":"19:30","confrontation":"Flamengo x Grêmio","championship":"Brasileirão - Série A","channels":"Premiere","homeLogo":"https://imagecache.365scores.com/image/upload/f_png,c_limit,q_auto:eco,dpr_2/Competitors/1215","awayLogo":"https://imagecache.365scores.com/image/upload/f_png,c_limit,q_auto:eco,dpr_2/Competitors/1218","matchedId":"premiere-c","matchedName":"PREMIERE","available":true},{"time":"19:30","confrontation":"Internacional (F) x RB Bragantino (F)","championship":"Copa do Brasil (F)","channels":" SporTV, Nsports, Youtube NSports, Youtube Lance!, Xsports","homeLogo":"https://imagecache.365scores.com/image/upload/f_png,c_limit,q_auto:eco,dpr_2/Competitors/56355","awayLogo":"https://imagecache.365scores.com/image/upload/f_png,c_limit,q_auto:eco,dpr_2/Competitors/68936","matchedId":"sportv-1","matchedName":"SPORTV 1","available":true},{"time":"21:30","confrontation":"São Paulo x Corinthians","championship":"Brasileirão - Série A","channels":"Globo, Premiere, GETV","homeLogo":"https://imagecache.365scores.com/image/upload/f_png,c_limit,q_auto:eco,dpr_2/Competitors/1225","awayLogo":"https://imagecache.365scores.com/image/upload/f_png,c_limit,q_auto:eco,dpr_2/Competitors/1267","matchedId":"premiere-c","matchedName":"PREMIERE","available":true},{"time":"21:30","confrontation":"Botafogo x Atlético-MG","championship":"Brasileirão - Série A","channels":"Globo, Premiere","homeLogo":"https://imagecache.365scores.com/image/upload/f_png,c_limit,q_auto:eco,dpr_2/Competitors/1211","awayLogo":"https://imagecache.365scores.com/image/upload/f_png,c_limit,q_auto:eco,dpr_2/Competitors/1209","matchedId":"premiere-c","matchedName":"PREMIERE","available":true},{"time":"22:30","confrontation":"Universitario x Sport Boys","championship":"Campeonato Peruano","channels":"Disney+, ESPN 4, SporTV","homeLogo":"https://imagecache.365scores.com/image/upload/f_png,c_limit,q_auto:eco,dpr_2/Competitors/7169","awayLogo":"https://imagecache.365scores.com/image/upload/f_png,c_limit,q_auto:eco,dpr_2/Competitors/8414","matchedId":"sportv-1","matchedName":"SPORTV 1","available":true}];
+    const DEFAULT_MATCHES = [{"time":"10:25","confrontation":"Al-Kholood x Al-Khaleej","championship":"Campeonato Saudita","channels":"BandSports, Canal GOAT, YouTube","homeLogo":"https://imagecache.365scores.com/image/upload/f_png,c_limit,q_auto:eco,dpr_2/Competitors/55800","awayLogo":"https://imagecache.365scores.com/image/upload/f_png,c_limit,q_auto:eco,dpr_2/Competitors/12138","matchedId":"bandsports","matchedName":"BANDSPORTS","available":true},{"time":"14:30","confrontation":"Al-Qadisiya x Al-Fayha","championship":"Campeonato Saudita","channels":"SporTV3, Youtube Canal GOAT, Xsports","homeLogo":"https://imagecache.365scores.com/image/upload/f_png,c_limit,q_auto:eco,dpr_2/Competitors/8947","awayLogo":"https://imagecache.365scores.com/image/upload/f_png,c_limit,q_auto:eco,dpr_2/Competitors/20733","matchedId":"sportv-3","matchedName":"SPORTV 3","available":true},{"time":"15:00","confrontation":"Tarancón x Levante","championship":"Copa do Rei","channels":"Disney+","homeLogo":"https://imagecache.365scores.com/image/upload/f_png,c_limit,q_auto:eco,dpr_2/Competitors/53858","awayLogo":"https://imagecache.365scores.com/image/upload/f_png,c_limit,q_auto:eco,dpr_2/Competitors/150","matchedId":"disney-1","matchedName":"DISNEY+ 1","available":true},{"time":"14:45","confrontation":"AC Milan x Ferencvaros","championship":"Liga Europa","channels":"CazéTV","homeLogo":"https://imagecache.365scores.com/image/upload/f_png,c_limit,q_auto:eco,dpr_2/Competitors/227","awayLogo":"https://imagecache.365scores.com/image/upload/f_png,c_limit,q_auto:eco,dpr_2/Competitors/6020","matchedId":"cazetv-1","matchedName":"CAZETV 1","available":true},{"time":"14:45","confrontation":"Crystal Palace x Hoffenheim","championship":"Liga Europa","channels":"CazéTV","homeLogo":"https://imagecache.365scores.com/image/upload/f_png,c_limit,q_auto:eco,dpr_2/Competitors/10","awayLogo":"https://imagecache.365scores.com/image/upload/f_png,c_limit,q_auto:eco,dpr_2/Competitors/351","matchedId":"cazetv-1","matchedName":"CAZETV 1","available":true},{"time":"14:45","confrontation":"Sparta Praha x Bournemouth","championship":"Liga Europa","channels":"CazéTV","homeLogo":"https://imagecache.365scores.com/image/upload/f_png,c_limit,q_auto:eco,dpr_2/Competitors/1788","awayLogo":"https://imagecache.365scores.com/image/upload/f_png,c_limit,q_auto:eco,dpr_2/Competitors/50","matchedId":"cazetv-1","matchedName":"CAZETV 1","available":true},{"time":"14:45","confrontation":"Real Sociedad x Lyon","championship":"Liga Europa","channels":"CazéTV","homeLogo":"https://imagecache.365scores.com/image/upload/f_png,c_limit,q_auto:eco,dpr_2/Competitors/154","awayLogo":"https://imagecache.365scores.com/image/upload/f_png,c_limit,q_auto:eco,dpr_2/Competitors/465","matchedId":"cazetv-1","matchedName":"CAZETV 1","available":true},{"time":"14:45","confrontation":"Anderlecht x Red Bull Salzburg","championship":"Liga Europa","channels":"CazéTV","homeLogo":"https://imagecache.365scores.com/image/upload/f_png,c_limit,q_auto:eco,dpr_2/Competitors/1173","awayLogo":"https://imagecache.365scores.com/image/upload/f_png,c_limit,q_auto:eco,dpr_2/Competitors/1739","matchedId":"cazetv-1","matchedName":"CAZETV 1","available":true},{"time":"14:45","confrontation":"Trabzonspor x Freiburg","championship":"Liga Conferência","channels":"CazéTV","homeLogo":"https://imagecache.365scores.com/image/upload/f_png,c_limit,q_auto:eco,dpr_2/Competitors/950","awayLogo":"https://imagecache.365scores.com/image/upload/f_png,c_limit,q_auto:eco,dpr_2/Competitors/354","matchedId":"cazetv-1","matchedName":"CAZETV 1","available":true},{"time":"14:45","confrontation":"FC Midtjylland x Ajax","championship":"Liga Conferência","channels":"CazéTV","homeLogo":"https://imagecache.365scores.com/image/upload/f_png,c_limit,q_auto:eco,dpr_2/Competitors/1823","awayLogo":"https://imagecache.365scores.com/image/upload/f_png,c_limit,q_auto:eco,dpr_2/Competitors/690","matchedId":"cazetv-1","matchedName":"CAZETV 1","available":true},{"time":"14:45","confrontation":"Atalanta x Kairat Almaty","championship":"Liga Conferência","channels":"CazéTV","homeLogo":"https://imagecache.365scores.com/image/upload/f_png,c_limit,q_auto:eco,dpr_2/Competitors/232","awayLogo":"https://imagecache.365scores.com/image/upload/f_png,c_limit,q_auto:eco,dpr_2/Competitors/10564","matchedId":"cazetv-1","matchedName":"CAZETV 1","available":true},{"time":"14:45","confrontation":"Aarhus x SC Braga","championship":"Liga Conferência","channels":"CazéTV","homeLogo":"https://imagecache.365scores.com/image/upload/f_png,c_limit,q_auto:eco,dpr_2/Competitors/1831","awayLogo":"https://imagecache.365scores.com/image/upload/f_png,c_limit,q_auto:eco,dpr_2/Competitors/895","matchedId":"cazetv-1","matchedName":"CAZETV 1","available":true},{"time":"15:00","confrontation":"Aldosivi x River Plate","championship":"Campeonato Argentino","channels":"Disney+","homeLogo":"https://imagecache.365scores.com/image/upload/f_png,c_limit,q_auto:eco,dpr_2/Competitors/7223","awayLogo":"https://imagecache.365scores.com/image/upload/f_png,c_limit,q_auto:eco,dpr_2/Competitors/868","matchedId":"disney-1","matchedName":"DISNEY+ 1","available":true},{"time":"15:00","confrontation":"São Paulo Júnior x Ceará-CE Júnior","championship":"Copa do Brasil Sub-20","channels":" SporTV","homeLogo":"https://imagecache.365scores.com/image/upload/f_png,c_limit,q_auto:eco,dpr_2/Competitors/28831","awayLogo":"https://imagecache.365scores.com/image/upload/f_png,c_limit,q_auto:eco,dpr_2/Competitors/28792","matchedId":"sportv-1","matchedName":"SPORTV 1","available":true},{"time":"17:00","confrontation":"AZ Alkmaar x Juventus","championship":"Liga Europa","channels":"CazéTV","homeLogo":"https://imagecache.365scores.com/image/upload/f_png,c_limit,q_auto:eco,dpr_2/Competitors/699","awayLogo":"https://imagecache.365scores.com/image/upload/f_png,c_limit,q_auto:eco,dpr_2/Competitors/226","matchedId":"cazetv-1","matchedName":"CAZETV 1","available":true},{"time":"17:00","confrontation":"Sunderland x Dinamo Zagreb","championship":"Liga Europa","channels":"CazéTV","homeLogo":"https://imagecache.365scores.com/image/upload/f_png,c_limit,q_auto:eco,dpr_2/Competitors/117","awayLogo":"https://imagecache.365scores.com/image/upload/f_png,c_limit,q_auto:eco,dpr_2/Competitors/2245","matchedId":"cazetv-1","matchedName":"CAZETV 1","available":true},{"time":"17:00","confrontation":"Celtic x Besiktas","championship":"Liga Europa","channels":"CazéTV","homeLogo":"https://imagecache.365scores.com/image/upload/f_png,c_limit,q_auto:eco,dpr_2/Competitors/754","awayLogo":"https://imagecache.365scores.com/image/upload/f_png,c_limit,q_auto:eco,dpr_2/Competitors/947","matchedId":"cazetv-1","matchedName":"CAZETV 1","available":true},{"time":"17:00","confrontation":"Benfica x Lech Poznan","championship":"Liga Europa","channels":"CazéTV","homeLogo":"https://imagecache.365scores.com/image/upload/f_png,c_limit,q_auto:eco,dpr_2/Competitors/888","awayLogo":"https://imagecache.365scores.com/image/upload/f_png,c_limit,q_auto:eco,dpr_2/Competitors/2211","matchedId":"cazetv-1","matchedName":"CAZETV 1","available":true},{"time":"17:00","confrontation":"Panathinaikos x CSKA Sofia","championship":"Liga Conferência","channels":"CazéTV","homeLogo":"https://imagecache.365scores.com/image/upload/f_png,c_limit,q_auto:eco,dpr_2/Competitors/1022","awayLogo":"https://imagecache.365scores.com/image/upload/f_png,c_limit,q_auto:eco,dpr_2/Competitors/2276","matchedId":"cazetv-1","matchedName":"CAZETV 1","available":true},{"time":"17:00","confrontation":"Getafe x Brighton","championship":"Liga Conferência","channels":"CazéTV","homeLogo":"https://imagecache.365scores.com/image/upload/f_png,c_limit,q_auto:eco,dpr_2/Competitors/140","awayLogo":"https://imagecache.365scores.com/image/upload/f_png,c_limit,q_auto:eco,dpr_2/Competitors/38","matchedId":"cazetv-1","matchedName":"CAZETV 1","available":true},{"time":"17:00","confrontation":"FC Copenhagen x FC Iberia 1999","championship":"Liga Conferência","channels":"CazéTV","homeLogo":"https://imagecache.365scores.com/image/upload/f_png,c_limit,q_auto:eco,dpr_2/Competitors/1824","awayLogo":"https://imagecache.365scores.com/image/upload/f_png,c_limit,q_auto:eco,dpr_2/Competitors/14390","matchedId":"cazetv-1","matchedName":"CAZETV 1","available":true},{"time":"17:00","confrontation":"Monaco x FC Nordsjælland","championship":"Liga Conferência","channels":"CazéTV","homeLogo":"https://imagecache.365scores.com/image/upload/f_png,c_limit,q_auto:eco,dpr_2/Competitors/471","awayLogo":"https://imagecache.365scores.com/image/upload/f_png,c_limit,q_auto:eco,dpr_2/Competitors/1827","matchedId":"cazetv-1","matchedName":"CAZETV 1","available":true},{"time":"17:30","confrontation":"Paysandu Júnior x Palmeiras Júnior","championship":"Copa do Brasil Sub-20","channels":" SporTV","homeLogo":"https://imagecache.365scores.com/image/upload/f_png,c_limit,q_auto:eco,dpr_2/Competitors/28812","awayLogo":"https://imagecache.365scores.com/image/upload/f_png,c_limit,q_auto:eco,dpr_2/Competitors/28853","matchedId":"sportv-1","matchedName":"SPORTV 1","available":true},{"time":"19:30","confrontation":"Palmeiras x Remo","championship":"Brasileirão - Série A","channels":"Premiere","homeLogo":"https://imagecache.365scores.com/image/upload/f_png,c_limit,q_auto:eco,dpr_2/Competitors/1222","awayLogo":"https://imagecache.365scores.com/image/upload/f_png,c_limit,q_auto:eco,dpr_2/Competitors/7383","matchedId":"premiere-c","matchedName":"PREMIERE","available":true},{"time":"19:30","confrontation":"Botafogo-SP x Londrina","championship":"Brasileirão - Série B","channels":"ESPN, Disney+","homeLogo":"https://imagecache.365scores.com/image/upload/f_png,c_limit,q_auto:eco,dpr_2/Competitors/1773","awayLogo":"https://imagecache.365scores.com/image/upload/f_png,c_limit,q_auto:eco,dpr_2/Competitors/9113","matchedId":"espn-1","matchedName":"ESPN 1","available":true},{"time":"21:30","confrontation":"Cruzeiro x Bahia","championship":"Brasileirão - Série A","channels":"Amazon Prime","homeLogo":"https://imagecache.365scores.com/image/upload/f_png,c_limit,q_auto:eco,dpr_2/Competitors/1213","awayLogo":"https://imagecache.365scores.com/image/upload/f_png,c_limit,q_auto:eco,dpr_2/Competitors/1767","matchedId":"primevideo-1","matchedName":"PRIME VIDEO 1","available":true}];
 
     // Helper for team initials & shield rendering
     function getTeamBadgeHtml(teamName, directLogoUrl) {
@@ -1083,7 +1102,10 @@
       if (lower.includes('prime video') || lower.includes('primevideo') || lower.includes('amazon prime')) return { id: 'primevideo-1', name: 'PRIME VIDEO' };
       if (lower.includes('record')) return { id: 'record', name: 'RECORD' };
       if (lower.includes('sbt')) return { id: 'sbt', name: 'SBT' };
-      if (lower.includes('globo') || lower.includes('tv globo')) return { id: 'premiere-c', name: 'PREMIERE / GLOBO' };
+      if (lower.includes('globo mg') || lower.includes('globo minas')) return { id: 'globo-mg', name: 'GLOBO MG' };
+      if (lower.includes('globo rj') || lower.includes('globo rio')) return { id: 'globo-rj', name: 'GLOBO RJ' };
+      if (lower.includes('globo sp') || lower.includes('globo sao paulo')) return { id: 'globo-sp', name: 'GLOBO SP' };
+      if (lower.includes('globo') || lower.includes('tv globo')) return { id: 'globo-sp', name: 'TV GLOBO' };
       return null;
     }
 
