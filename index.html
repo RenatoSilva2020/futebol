@@ -3,6 +3,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
   <title>REDE ESPORTE - Guia de Jogos na TV &amp; Player ao Vivo</title>
+  <meta name="description" content="Guia de Jogos na TV e Player ao Vivo de canais esportivos Premiere, SporTV, ESPN, CazéTV e muito mais.">
+  <meta property="og:title" content="REDE ESPORTE - Guia de Jogos na TV &amp; Player ao Vivo">
+  <meta property="og:description" content="Guia de Jogos na TV e Player ao Vivo de canais esportivos Premiere, SporTV, ESPN, CazéTV e muito mais.">
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,&lt;svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23dc2626'&gt;&lt;circle cx='12' cy='12' r='10'/&gt;&lt;polygon points='10,8 16,12 10,16' fill='white'/&gt;&lt;/svg&gt;">
   <style>
     :root {
@@ -379,6 +382,7 @@
       text-overflow: ellipsis;
       max-width: 200px;
       text-align: right;
+      margin-left: auto;
     }
 
     .match-teams-box {
@@ -986,10 +990,10 @@
     </div>
 
     <div class="nav-tabs">
-      <button id="tab-btn-guide" class="tab-btn" onclick="switchTab('guide')">
+      <button id="tab-btn-guide" class="tab-btn active" onclick="switchTab('guide')">
         <span>📅 Jogos do Dia</span>
       </button>
-      <button id="tab-btn-video" class="tab-btn active" onclick="switchTab('video')">
+      <button id="tab-btn-video" class="tab-btn" onclick="switchTab('video')">
         <span>📺 Player &amp; Canais (43)</span>
       </button>
     </div>
@@ -1010,7 +1014,7 @@
         <span class="hidden-mobile">Tela Cheia</span>
       </button>
 
-      <a id="btn-top-server" href="https://ww0.embedtv.cc/caze1" target="_blank" rel="noopener noreferrer" class="btn-server-top">
+      <a id="btn-top-server" href="https://ww0.embedtv.cc/espn" target="_blank" rel="noopener noreferrer" class="btn-server-top">
         <span>Abrir Servidor ↗</span>
       </a>
     </div>
@@ -1018,7 +1022,7 @@
 
   <div class="container">
     <!-- VIEW 1: GUIA DE JOGOS DO DIA (PADRÃO PARA TV) -->
-    <div id="view-guide" class="hide">
+    <div id="view-guide" class="">
       <div class="banner">
         <div>
           <div class="banner-title">
@@ -1076,7 +1080,7 @@
       <div id="matches-container" class="matches-grid"><div class="match-card" tabindex="0">
           <div>
             <div class="match-header">
-              <span class="match-time-finished">Fim</span>
+              
               <span class="match-champ" title="Campeonato Russo">Campeonato Russo</span>
             </div>
             
@@ -1109,7 +1113,7 @@
         </div><div class="match-card" tabindex="0">
           <div>
             <div class="match-header">
-              <span class="match-time-finished">Fim</span>
+              
               <span class="match-champ" title="2ª Divisão Alemã">2ª Divisão Alemã</span>
             </div>
             
@@ -1142,7 +1146,7 @@
         </div><div class="match-card" tabindex="0">
           <div>
             <div class="match-header">
-              <span class="match-time-finished">Fim</span>
+              
               <span class="match-champ" title="Campeonato Alemão (F)">Campeonato Alemão (F)</span>
             </div>
             
@@ -1178,7 +1182,7 @@
         </div><div class="match-card" tabindex="0">
           <div>
             <div class="match-header">
-              <span class="match-time-live">🔴 59'</span>
+              
               <span class="match-champ" title="Campeonato Alemão">Campeonato Alemão</span>
             </div>
             
@@ -1189,9 +1193,9 @@
               </div>
               
             <div class="score-center-box">
-              <span class="score-status-label live-red">59'</span>
+              <span class="score-status-label live-red">86'</span>
               <div class="score-numbers">
-                <span>1</span>
+                <span>3</span>
                 <span class="score-sep">-</span>
                 <span>1</span>
               </div>
@@ -1214,7 +1218,7 @@
         </div><div class="match-card" tabindex="0">
           <div>
             <div class="match-header">
-              <span class="match-time-live">🔴 Intervalo</span>
+              
               <span class="match-champ" title="Campeonato Italiano">Campeonato Italiano</span>
             </div>
             
@@ -1225,11 +1229,11 @@
               </div>
               
             <div class="score-center-box">
-              <span class="score-status-label live-red">Intervalo</span>
+              <span class="score-status-label live-red">71'</span>
               <div class="score-numbers">
-                <span>0</span>
+                <span>2</span>
                 <span class="score-sep">-</span>
-                <span>0</span>
+                <span>1</span>
               </div>
             </div>
           
@@ -1247,7 +1251,7 @@
         </div><div class="match-card" tabindex="0">
           <div>
             <div class="match-header">
-              <span class="match-time-live">🔴 Intervalo</span>
+              
               <span class="match-champ" title="Campeonato Francês">Campeonato Francês</span>
             </div>
             
@@ -1258,11 +1262,11 @@
               </div>
               
             <div class="score-center-box">
-              <span class="score-status-label live-red">Intervalo</span>
+              <span class="score-status-label live-red">70'</span>
               <div class="score-numbers">
-                <span>1</span>
+                <span>2</span>
                 <span class="score-sep">-</span>
-                <span>0</span>
+                <span>1</span>
               </div>
             </div>
           
@@ -1283,7 +1287,7 @@
         </div><div class="match-card" tabindex="0">
           <div>
             <div class="match-header">
-              <span class="match-time-live">🔴 Intervalo</span>
+              
               <span class="match-champ" title="Copa da Inglaterra">Copa da Inglaterra</span>
             </div>
             
@@ -1294,11 +1298,11 @@
               </div>
               
             <div class="score-center-box">
-              <span class="score-status-label live-red">Intervalo</span>
+              <span class="score-status-label live-red">71'</span>
               <div class="score-numbers">
-                <span>1</span>
+                <span>2</span>
                 <span class="score-sep">-</span>
-                <span>1</span>
+                <span>3</span>
               </div>
             </div>
           
@@ -1316,7 +1320,7 @@
         </div><div class="match-card" tabindex="0">
           <div>
             <div class="match-header">
-              <span class="match-time-live">🔴 45'</span>
+              
               <span class="match-champ" title="Campeonato Inglês">Campeonato Inglês</span>
             </div>
             
@@ -1327,11 +1331,11 @@
               </div>
               
             <div class="score-center-box">
-              <span class="score-status-label live-red">45'</span>
+              <span class="score-status-label live-red">55'</span>
               <div class="score-numbers">
                 <span>0</span>
                 <span class="score-sep">-</span>
-                <span>0</span>
+                <span>1</span>
               </div>
             </div>
           
@@ -1349,7 +1353,7 @@
         </div><div class="match-card" tabindex="0">
           <div>
             <div class="match-header">
-              <span class="match-time-live">🔴 Intervalo</span>
+              
               <span class="match-champ" title="2ª Divisão Inglesa">2ª Divisão Inglesa</span>
             </div>
             
@@ -1360,9 +1364,9 @@
               </div>
               
             <div class="score-center-box">
-              <span class="score-status-label live-red">Intervalo</span>
+              <span class="score-status-label live-red">58'</span>
               <div class="score-numbers">
-                <span>0</span>
+                <span>2</span>
                 <span class="score-sep">-</span>
                 <span>1</span>
               </div>
@@ -1382,7 +1386,7 @@
         </div><div class="match-card" tabindex="0">
           <div>
             <div class="match-header">
-              <span class="match-time-live">🔴 45'</span>
+              
               <span class="match-champ" title="Campeonato Espanhol">Campeonato Espanhol</span>
             </div>
             
@@ -1393,7 +1397,7 @@
               </div>
               
             <div class="score-center-box">
-              <span class="score-status-label live-red">45'</span>
+              <span class="score-status-label live-red">52'</span>
               <div class="score-numbers">
                 <span>0</span>
                 <span class="score-sep">-</span>
@@ -1418,7 +1422,7 @@
         </div><div class="match-card" tabindex="0">
           <div>
             <div class="match-header">
-              <span class="match-time-live">🔴 45'</span>
+              
               <span class="match-champ" title="Campeonato Peruano">Campeonato Peruano</span>
             </div>
             
@@ -1429,7 +1433,7 @@
               </div>
               
             <div class="score-center-box">
-              <span class="score-status-label live-red">45'</span>
+              <span class="score-status-label live-red">53'</span>
               <div class="score-numbers">
                 <span>1</span>
                 <span class="score-sep">-</span>
@@ -1451,7 +1455,7 @@
         </div><div class="match-card" tabindex="0">
           <div>
             <div class="match-header">
-              <span class="match-time-live">🔴 2'</span>
+              
               <span class="match-champ" title="Campeonato Português">Campeonato Português</span>
             </div>
             
@@ -1462,7 +1466,7 @@
               </div>
               
             <div class="score-center-box">
-              <span class="score-status-label live-red">2'</span>
+              <span class="score-status-label live-red">30'</span>
               <div class="score-numbers">
                 <span>0</span>
                 <span class="score-sep">-</span>
@@ -1584,18 +1588,18 @@
     </div>
 
     <!-- VIEW 2: VIDEO PLAYER & CANAIS -->
-    <div id="view-video" class="">
+    <div id="view-video" class="hide">
       <div class="video-layout">
         <!-- Player Column -->
         <div>
           <div class="player-wrapper">
-            <iframe id="main-player" src="https://ww0.embedtv.cc/caze1" allowfullscreen="" allow="autoplay; fullscreen; encrypted-media; picture-in-picture"></iframe>
+            <iframe id="main-player" src="https://ww0.embedtv.cc/espn" allowfullscreen="" allow="autoplay; fullscreen; encrypted-media; picture-in-picture"></iframe>
           </div>
 
           <div class="player-meta">
             <div>
-              <div id="player-title" style="font-size: 1.4rem; font-weight: 900; color: #fff;">CAZETV 1</div>
-              <div id="player-desc" style="font-size: 0.88rem; color: #94a3b8; margin-top: 3px;">CazéTV · Transmissão oficial via player3 redecanais</div>
+              <div id="player-title" style="font-size: 1.4rem; font-weight: 900; color: #fff;">ESPN 1</div>
+              <div id="player-desc" style="font-size: 0.88rem; color: #94a3b8; margin-top: 3px;">ESPN · Transmissão oficial via player3 redecanais</div>
             </div>
 
             <div style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
@@ -1605,7 +1609,7 @@
               <button onclick="toggleFullScreen()" class="btn-tune-fallback" title="Tela Cheia">
                 <span>Tela Cheia ⛶</span>
               </button>
-              <a id="btn-player-direct" href="https://ww0.embedtv.cc/caze1" target="_blank" rel="noopener noreferrer" class="btn-watch">
+              <a id="btn-player-direct" href="https://ww0.embedtv.cc/espn" target="_blank" rel="noopener noreferrer" class="btn-watch">
                 <span>Abrir Servidor ↗</span>
               </a>
             </div>
@@ -1627,7 +1631,7 @@
             <div style="font-size:0.75rem; color:#94a3b8;">BandSports</div>
           </div>
           <span style="font-size:0.78rem; color:#dc2626; font-weight:800;">Assistir ▶</span>
-        </div><div id="item-cazetv-1" class="channel-item active" tabindex="0">
+        </div><div id="item-cazetv-1" class="channel-item" tabindex="0">
           <div>
             <strong style="font-size: 0.88rem; color:#fff;">CAZETV 1</strong>
             <div style="font-size:0.75rem; color:#94a3b8;">CazéTV</div>
@@ -1663,7 +1667,7 @@
             <div style="font-size:0.75rem; color:#94a3b8;">Disney+</div>
           </div>
           <span style="font-size:0.78rem; color:#dc2626; font-weight:800;">Assistir ▶</span>
-        </div><div id="item-espn-1" class="channel-item" tabindex="0">
+        </div><div id="item-espn-1" class="channel-item active" tabindex="0">
           <div>
             <strong style="font-size: 0.88rem; color:#fff;">ESPN 1</strong>
             <div style="font-size:0.75rem; color:#94a3b8;">ESPN</div>
@@ -1944,7 +1948,7 @@
 
           <div class="code-preview-box">
             <div class="code-preview-bar">
-              <span id="export-stats-label">index.html pronto · 3.199 linhas · 159 KB</span>
+              <span id="export-stats-label">index.html pronto · 3.203 linhas · 159 KB</span>
               <span style="font-size:0.75rem; color:#64748b;">Clique no botão "Copiar Código Completo" ou selecione abaixo</span>
             </div>
             <textarea id="export-code-textarea" class="code-textarea" readonly="" onclick="this.select()" spellcheck="false"></textarea>
@@ -2598,23 +2602,23 @@
           actionButtons += `<button class="btn-tune-fallback" onclick="playChannel('premiere-c')">Sintonizar Canais ▶</button>`;
         }
 
-        let headerTimeBadge = `<span class="match-time">${m.time}</span>`;
-        if (m.isLive) {
-          headerTimeBadge = `<span class="match-time-live">🔴 ${m.liveStatusLabel || 'AO VIVO'}</span>`;
-        } else if (m.isFinished) {
-          headerTimeBadge = `<span class="match-time-finished">${m.liveStatusLabel || 'FIM'}</span>`;
+        let headerTimeBadge = '';
+        if (!m.isLive && !m.isFinished && !m.hasScore) {
+          headerTimeBadge = `<span class="match-time">${m.time}</span>`;
         }
 
         let centerContent = `<span class="vs-badge">VS</span>`;
-        if (m.hasScore && m.homeScore !== null && m.homeScore !== undefined) {
+        if ((m.hasScore && m.homeScore !== null && m.homeScore !== undefined) || m.isLive || m.isFinished) {
           const statusClass = m.isLive ? 'live-red' : 'muted';
+          const hScore = (m.homeScore !== null && m.homeScore !== undefined) ? m.homeScore : 0;
+          const aScore = (m.awayScore !== null && m.awayScore !== undefined) ? m.awayScore : 0;
           centerContent = `
             <div class="score-center-box">
-              <span class="score-status-label ${statusClass}">${m.liveStatusLabel || ''}</span>
+              <span class="score-status-label ${statusClass}">${m.liveStatusLabel || (m.isLive ? 'Ao Vivo' : '')}</span>
               <div class="score-numbers">
-                <span>${m.homeScore}</span>
+                <span>${hScore}</span>
                 <span class="score-sep">-</span>
-                <span>${m.awayScore ?? 0}</span>
+                <span>${aScore}</span>
               </div>
             </div>
           `;
